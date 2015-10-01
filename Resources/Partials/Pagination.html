@@ -1,0 +1,21 @@
+<ul class="pagination expose-limits">
+	<f:for each="{limits}" as="active" key="limit">
+		<f:if condition="{active}" ><f:then><li class="active"></f:then><f:else><li></f:else></f:if>
+			<e:link arguments="{limit: limit}">{limit}</e:link>
+		</li>
+	</f:for>
+</ul>
+
+<ul class="pagination expose-pagination pull-right">
+	<f:if condition="{pagination.prevPage}">
+		<li><e:link arguments="{page: pagination.prevPage}">prev</e:link></li>
+	</f:if>
+	<f:for each="{pagination.pages}" as="page">
+		<f:if condition="{pagination.currentPage} == {page}" ><f:then><li class="active"></f:then><f:else><li></f:else></f:if>
+			<e:link arguments="{page: page}">{page}</e:link>
+		</li>
+	</f:for>
+	<f:if condition="{pagination.nextPage}">
+		<li><e:link arguments="{page: pagination.nextPage}">next</e:link></li>
+	</f:if>
+</ul>

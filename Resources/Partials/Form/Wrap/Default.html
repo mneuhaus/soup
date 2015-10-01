@@ -1,0 +1,10 @@
+{namespace e=Flowpack\Expose\ViewHelpers}
+<div class="form-group">
+	<label for="{propertySchema.formId}" class="col-sm-3 control-label">{propertySchema.label}{requiredString}
+	</label>
+	<div class="col-sm-9">
+		{control -> f:format.raw()}
+
+		<f:if condition="{propertySchema.infotext}"><p class="help-block">{propertySchema.infotext}</p></f:if>
+	</div>
+</div>

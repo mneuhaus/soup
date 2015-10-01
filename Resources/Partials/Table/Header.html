@@ -1,0 +1,16 @@
+<f:if condition="{classSchema.listProperties}">
+	<tr>
+		<f:if condition="{classSchema.listProperties}">
+			<f:then>
+				<f:for each="{classSchema.listProperties}" as="property">
+					<th>
+						<e:wrap name="property" arguments="{property: property.name}"><i class="fa"></i> {property.label}</e:wrap>
+					</th>
+				</f:for>
+			</f:then>
+			<f:else>
+				<th></th>
+			</f:else>
+		</f:if>
+	</tr>
+</f:if>

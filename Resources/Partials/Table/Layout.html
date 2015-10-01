@@ -1,0 +1,19 @@
+<e:behavior objects="{items}" behaviors="{classSchema.listBehaviors}">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="row expose-toolbar">
+				<div class="col-xs-4">
+				</div>
+				<div class="col-xs-8">
+					<e:block name="top"/>
+				</div>
+			</div>
+			<table class="table table-bordered table-striped expose-table">
+				<f:render partial="Table/Header" arguments="{items: items, classSchema: classSchema}"/>
+				<f:render partial="Table/Body" arguments="{items: items, classSchema: classSchema}"/>
+			</table>
+			<e:block name="bottom" />
+		</div>
+		<e:block name="sidebar" />
+	</div>
+</e:behavior>
