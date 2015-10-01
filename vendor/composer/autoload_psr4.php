@@ -13,5 +13,6 @@ return array(
     'Symfony\\Component\\Console\\' => array($vendorDir . '/symfony/console'),
     'Seld\\JsonLint\\' => array($vendorDir . '/seld/jsonlint/src/Seld/JsonLint'),
     'JsonSchema\\' => array($vendorDir . '/justinrainbow/json-schema/src/JsonSchema'),
+    'FastRoute\\' => array($vendorDir . '/nikic/fast-route/src'),
     'Famelo\\Soup\\' => array($baseDir . '/src'),
 );

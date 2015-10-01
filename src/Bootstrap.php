@@ -1,51 +1,36 @@
 <?php
-
 require_once(__DIR__ . '/../vendor/autoload.php');
 
-$app = new \Slim\Slim();
+define('WORKING_DIRECTORY', $_ENV['PWD']);
+define('BASE_DIRECTORY', __DIR__);
 
-$app->get('/', function () {
-    fluid('index');
+$dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
+    $r->addRoute('GET', '/', '\Famelo\Soup\Core\WebController:index');
+    $r->addRoute('GET', '/recipe/{recipe}', '\Famelo\Soup\Core\WebController:recipe');
+    $r->addRoute('POST', '/recipe/{recipe}', '\Famelo\Soup\Core\WebController:saveRecipe');
 });
 
-$app->get('/hello/:name', function ($name) {
-    echo "Hello, $name";
-});
+// Fetch method and URI from somewhere
+$httpMethod = $_SERVER['REQUEST_METHOD'];
+$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-function fluid($template, $variables = array()) {
-    $paths = new \TYPO3Fluid\Fluid\View\TemplatePaths();
-    // $paths->setTemplateRootPaths(array(__DIR__ . '/../Templates/'));
-    $paths->setLayoutRootPaths(array(__DIR__ . '/../Layouts/'));
-    $paths->setPartialRootPaths(array(__DIR__ . '/../Partials/'));
+$routeInfo = $dispatcher->dispatch($httpMethod, $uri);
+switch ($routeInfo[0]) {
+    case FastRoute\Dispatcher::NOT_FOUND:
+        // ... 404 Not Found
+        break;
 
-    $parts = explode('/', $template);
-    array_walk($parts, function(&$value, $key){
-        $value = ucfirst($value);
-    });
-    $path = implode('/', $parts);
-    $templateFile = __DIR__ . '/../Templates/' . $path . '.html';
-    $paths->setTemplatePathAndFilename($templateFile);
+    case FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
+        $allowedMethods = $routeInfo[1];
+        // ... 405 Method Not Allowed
+        break;
 
-    $view = new \TYPO3Fluid\Fluid\View\TemplateView($paths);
-    $view->assignMultiple($variables);
-
-    // $processor = new \TYPO3Fluid\Fluid\Core\Parser\TemplateProcessor\UnknownNamespaceDetectionTemplateProcessor();
-    // $view->setTemplateProcessors(array(
-    //     $processor
-    // ));
-
-    echo $view->render();
-
-    // $this->view->getViewHelperResolver()->registerNamespace('e', 'Mneuhaus\\Expose\\ViewHelpers');
-
-    // $variableProvider = new ExposeVariableProvider();
-    // $this->view->getRenderingContext()->setVariableProvider($variableProvider);
-
-    // $viewHelperResolver = new \Famelo\Cider\Fluid\ViewHelperResolver();
-    // $view->setViewHelperResolver($viewHelperResolver);
-
-	// $view->assign('foobar', 'MVC template');
-	// echo $view->render('Default');
+    case FastRoute\Dispatcher::FOUND:
+        $handler = $routeInfo[1];
+        $arguments = $routeInfo[2];
+        $parts = explode(':', $handler);
+        $controller = new $parts[0]();
+        $action = $parts[1];
+        $controller->$action($arguments);
+        break;
 }
-
-$app->run();

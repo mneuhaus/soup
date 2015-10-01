@@ -1,0 +1,20 @@
+<f:layout name="Default" />
+
+<f:section name="Main">
+<h3>TYPO3</h3>
+<form method="POST">
+	<f:for each="{recipe.fields}" as="field" key="fieldName">
+		<div class="row">
+			<s:form.field name="{fieldName}" label="{field.label}" value="{field.value}" />
+		</div>
+	</f:for>
+
+	<div class="row">
+		<div class="col-xs-9 col-xs-offset-3">
+			<button type="Submit" class="btn btn-default">
+				Save
+			</button>
+		</div>
+	</div>
+</form>
+</f:section>

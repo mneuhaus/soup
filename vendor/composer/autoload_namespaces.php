@@ -7,7 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Whoops' => array($vendorDir . '/filp/whoops/src'),
-    'Slim' => array($vendorDir . '/slim/slim'),
     'KevinGH\\Amend' => array($vendorDir . '/kherge/amend/src/lib'),
     'Herrera\\Version' => array($vendorDir . '/herrera-io/version/src/lib'),
     'Herrera\\Phar\\Update' => array($vendorDir . '/herrera-io/phar-update/src/lib'),

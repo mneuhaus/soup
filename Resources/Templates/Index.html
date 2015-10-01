@@ -1,5 +1,9 @@
 <f:layout name="Default" />
 
 <f:section name="Main">
-foobar
+<ul>
+<f:for each="{relevantRecipes}" as="relevantRecipe">
+	<li><a href="recipe/{relevantRecipe}">{relevantRecipe}</a></li>
+</f:for>
+</ul>
 </f:section>
