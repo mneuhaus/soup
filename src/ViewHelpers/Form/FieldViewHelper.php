@@ -39,6 +39,9 @@ class FieldViewHelper extends AbstractViewHelper {
 			$this->arguments['class'] = 'form-control';
 		}
 
+		$this->arguments = array_merge($this->arguments, $this->arguments['arguments']);
+		unset($this->arguments['arguments']);
+
 		$partial = $this->arguments['control'];
 
 		// if ($this->arguments['required'] === TRUE) {
@@ -47,9 +50,6 @@ class FieldViewHelper extends AbstractViewHelper {
 		// }
 
 		$this->arguments['id'] = str_replace(array('[', ']'), array('-', ''), $this->arguments['name']);
-
-		$this->arguments = array_merge($this->arguments['arguments'], $this->arguments);
-		unset($this->arguments['arguments']);
 
 		$control = $this->renderChildren();
 		if ($control === NULL) {

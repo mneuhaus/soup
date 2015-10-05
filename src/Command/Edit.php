@@ -51,7 +51,22 @@ class Edit extends Command {
 		$this->input = $input;
 
 		$tmpRouter = tempnam(sys_get_temp_dir(), 'soup-router') . '.php';
-		file_put_contents($tmpRouter, '<?php require("' . BOX_PATH . '/src/Bootstrap.php");');
+		file_put_contents($tmpRouter, '<?php
+$possibleFilePath = "' . BOX_PATH . '/Resources/Public" . $_SERVER["REQUEST_URI"];
+if (file_exists($possibleFilePath)) {
+	$types = array(
+		"css" => "Content-Type: text/css",
+		"js" => "Content-Type: text/javascript"
+	);
+	$extension = pathinfo($possibleFilePath, PATHINFO_EXTENSION);
+	if (isset($types[$extension])) {
+		header($types[$extension]);
+	}
+	readfile($possibleFilePath);
+} else {
+	require("' . BOX_PATH . '/src/Bootstrap.php");
+}
+		');
 
 		$process = new Process('php -S localhost:1716 ' . $tmpRouter);
 		$process->start();

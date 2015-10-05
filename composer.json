@@ -15,6 +15,8 @@
         "symfony\/process": "~2.7",
         "symfony\/filesystem": "~2.7",
         "kherge\/amend": "3.*",
-        "nikic/fast-route": "^0.6.0"
+        "nikic/fast-route": "^0.6.0",
+        "nikic/php-parser": "dev-master",
+        "famelo/archi": "dev-master"
     }
 }

@@ -12,6 +12,14 @@ class TYPO3 {
 	 */
 	protected $emConfPath;
 
+	/**
+	 * @var string
+	 */
+	protected $availableIngredients = array(
+		'Controller' => '\Famelo\Soup\Ingredients\TYPO3\Controller',
+		'Model' => '\Famelo\Soup\Ingredients\TYPO3\Model'
+	);
+
 	public function __construct() {
 		$this->emConfPath = WORKING_DIRECTORY . '/ext_emconf.php';
 	}
@@ -21,7 +29,11 @@ class TYPO3 {
 	}
 
 	public function getIngredients() {
-		# code...
+		$ingredients = array();
+		foreach ($this->availableIngredients as $name => $availableIngredient) {
+			$ingredients[$name] = $availableIngredient::getExistingInstances();
+		}
+		return $ingredients;
 	}
 
 	public function getFields() {
