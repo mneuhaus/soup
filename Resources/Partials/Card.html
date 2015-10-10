@@ -1,0 +1,19 @@
+<div class="card card-expandable depth-2">
+	<div class="card-header">
+		{header}
+		<div class="card-actions pull-right">
+			<a href="#" class="btn-round js-action-edit">
+				<i class="fa fa-pencil"></i>
+			</a>
+			<a href="#" class="btn-round js-action-remove">
+				<i class="fa fa-times"></i>
+			</a>
+			<a href="#" class="btn-round js-action-duplicate">
+				<i class="fa fa-files-o"></i>
+			</a>
+		</div>
+	</div>
+	<div class="card-body">
+		{content->f:format.raw()}
+	</div>
+</div>

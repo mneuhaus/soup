@@ -15,9 +15,9 @@ class TYPO3 {
 	/**
 	 * @var string
 	 */
-	protected $availableIngredients = array(
+	protected $ingredients = array(
 		'Controller' => '\Famelo\Soup\Ingredients\TYPO3\Controller',
-		'Model' => '\Famelo\Soup\Ingredients\TYPO3\Model'
+		// 'Model' => '\Famelo\Soup\Ingredients\TYPO3\Model'
 	);
 
 	public function __construct() {
@@ -29,11 +29,7 @@ class TYPO3 {
 	}
 
 	public function getIngredients() {
-		$ingredients = array();
-		foreach ($this->availableIngredients as $name => $availableIngredient) {
-			$ingredients[$name] = $availableIngredient::getExistingInstances();
-		}
-		return $ingredients;
+		return $this->ingredients;
 	}
 
 	public function getFields() {
@@ -59,6 +55,11 @@ class TYPO3 {
 	}
 
 	public function saveFields($fieldValues) {
+		foreach ($fieldValues['ingredients'] as $ingredientData) {
+			$reflection = new \ReflectionClass($ingredientData['_class']);
+			$ingredient = $reflection->newInstanceArgs($ingredientData['_arguments']);
+			$ingredient->save($ingredientData);
+		}
 		$metadata = $this->getMetadata();
 		foreach ($fieldValues as $key => $value) {
 			if (isset($metadata[$key])) {

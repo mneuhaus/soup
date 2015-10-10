@@ -37,7 +37,6 @@ body {
 .card-body {
     font-size: 14px;
     font-weight: 300;
-    overflow: hidden;
     text-overflow: ellipsis;
     -webkit-transition: max-height 200ms ease-in;
     -moz-transition: max-height 200ms ease-in;
@@ -49,10 +48,6 @@ body {
 
 .card-expandable .card-body {
     display: none;
-}
-
-.card-expandable.open .card-body {
-    display: block;
 }
 
 .card-actions {
@@ -89,6 +84,12 @@ body {
     right: 20px;
     top: 100%;
     margin-top: -15px;
+}
+
+.btn-round-small {
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
 }
 
 .card .btn-add {
@@ -132,6 +133,14 @@ body {
     margin-bottom: 0;
 }
 
+.form-sub {
+    margin: -15px -15px -16px;
+}
+
+.form-sub .form-control-wrap {
+    padding-right: 20px;
+}
+
 .card .form-group {
     border-bottom: 1px solid #E1E1E1;
 }
@@ -158,4 +167,60 @@ body {
     text-transform: uppercase;
     text-align: left;
     margin-bottom: 10px;
+}
+
+.repeater-item {
+    position: relative;
+}
+
+.repeater-item-remove {
+    position: absolute;
+    right: -10px;
+    top: 5px;
+    opacity: 0;
+    -webkit-transition: opacity 200ms ease-in;
+    -moz-transition: opacity 200ms ease-in;
+    -ms-transition: opacity 200ms ease-in;
+    -o-transition: opacity 200ms ease-in;
+    transition: opacity 200ms ease-in;
+}
+
+.repeater-item:hover .repeater-item-remove {
+    opacity: 1;
+}
+
+.repeater-item-unused {
+    opacity: 0.4;
+}
+
+.repeater-template {
+    display: none;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: row;
+    overflow: visible;
+}
+
+.form-group .control-label {
+    width: 24%;
+}
+
+.form-control-wrap {
+    flex-grow: 1;
+    padding: 15px;
+}
+
+.form-sub {
+    display: flex;
+    flex-direction: column;
+}
+
+.repeater-item-remove {
+    background: #BD002E;
+}
+
+.repeater-unused {
+    opacity: 0.3;
 }

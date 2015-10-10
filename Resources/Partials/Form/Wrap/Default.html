@@ -1,7 +1,7 @@
-<div class="form-group">
-	<label for="{id}" class="col-sm-3 control-label">{label}
+<div class="form-group {groupClass}">
+	<label for="{id}" class="control-label">{label}
 	</label>
-	<div class="col-sm-9">
+	<div class="form-control-wrap">
 		{control -> f:format.raw()}
 
 		<f:if condition="{propertySchema.infotext}"><p class="help-block">{propertySchema.infotext}</p></f:if>

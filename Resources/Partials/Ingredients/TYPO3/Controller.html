@@ -1,0 +1,28 @@
+<input type="hidden" name="ingredients[{ingredient.id}][_arguments][]" value="{ingredient.filepath}" />
+<f:render partial="Card" arguments="{header: ingredient.name}" contentAs="content">
+	<s:form.field name="ingredients[{ingredient.id}][name]" label="Controller Name" value="{ingredient.name}" />
+
+	<s:form.field label="Actions">
+		<div class="form-sub repeater">
+			<div class="repeater-items">
+				<f:for each="{ingredient.actions}" as="action">
+					<div class="repeater-item">
+						<s:form.field name="ingredients[{ingredient.id}][actions][{action.name}]" label="Name" value="{action.name->s:string.cutSuffix(suffix: 'action')}" />
+
+						<a href="#" class="btn-round btn-round-small repeater-item-remove">
+							<i class="fa fa-close"></i>
+						</a>
+					</div>
+				</f:for>
+			</div>
+
+			<div class="repeater-item repeater-template">
+				<s:form.field name="ingredients[{ingredient.id}][actions][--id--]" label="Name" value="" />
+
+				<a href="#" class="btn-round btn-round-small repeater-item-remove">
+					<i class="fa fa-close"></i>
+				</a>
+			</div>
+		</div>
+	</s:form.field>
+</f:render>

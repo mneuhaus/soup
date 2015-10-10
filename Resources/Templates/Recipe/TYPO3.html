@@ -4,38 +4,15 @@
 <h3>TYPO3</h3>
 <form method="POST">
 	<f:for each="{recipe.fields}" as="field" key="fieldName">
-		<div class="row">
-			<s:form.field name="{fieldName}" label="{field.label}" value="{field.value}" />
-		</div>
+		<s:form.field name="{fieldName}" label="{field.label}" value="{field.value}" />
 	</f:for>
 
-	<f:for each="{recipe.ingredients}" key="ingredientName" as="ingredients">
+	<f:for each="{recipe.ingredients}" key="ingredientName" as="ingredientClassName">
 		<div class="card-backdrop card-backdrop-{ingredientName}">
 			<div class="card-backdrop-header">{ingredientName}</div>
-			<f:for each="{ingredients}" as="ingredient">
-				<div class="card card-expandable depth-2">
-					<div class="card-header">
-						{ingredient.name}
-						<div class="card-actions pull-right">
-							<a href="#" class="btn-round js-action-edit">
-								<i class="fa fa-pencil"></i>
-							</a>
-							<a href="#" class="btn-round js-action-remove">
-								<i class="fa fa-times"></i>
-							</a>
-							<a href="#" class="btn-round js-action-duplicate">
-								<i class="fa fa-files-o"></i>
-							</a>
-						</div>
-					</div>
-					<div class="card-body">
-						<f:for each="{ingredient.fields}" as="field" key="fieldName">
-							<div class="row">
-								<s:form.field name="{fieldName}" label="{field.label}" value="{field.value}" arguments="{field}" />
-							</div>
-						</f:for>
-					</div>
-				</div>
+			<f:for each="{ingredientClassName->s:ingredients()}" as="ingredient">
+				<input type="hidden" name="ingredients[{ingredient.id}][_class]" value="{ingredientClassName}" />
+				<f:render partial="{ingredientClassName -> s:format.classPartial()}" arguments="{ingredient: ingredient}" />
 			</f:for>
 			<a href="#" class="btn-round pull-right">
 				<i class="fa fa-plus"></i>

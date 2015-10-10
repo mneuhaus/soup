@@ -4,7 +4,6 @@ $.widget("custom.cardExpandable", {
         value: 0
     },
     _create: function() {
-        console.log(this, this.options, this.element);
         var ref = this;
 
         this.element.on('click', '.js-action-edit', function(e) {
@@ -14,6 +13,6 @@ $.widget("custom.cardExpandable", {
     },
 
     toggle: function() {
-        this.element.toggleClass('open');
+        this.element.find('.card-body').slideToggle();
     }
 });

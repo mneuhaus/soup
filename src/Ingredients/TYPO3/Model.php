@@ -2,6 +2,7 @@
 namespace Famelo\Soup\Ingredients\TYPO3;
 
 use Famelo\Archi\Php\ClassFacade;
+use Famelo\Soup\Core\Ingredients\AbstractIngredient;
 use Famelo\Soup\Utility\String;
 use Symfony\Component\Finder\Finder;
 
@@ -10,7 +11,7 @@ use Symfony\Component\Finder\Finder;
  * See LICENSE.txt that was shipped with this package.
  */
 
-class Model {
+class Model extends AbstractIngredient {
 	/**
 	 * @var string
 	 */
@@ -20,6 +21,13 @@ class Model {
 	 * @var array
 	 */
 	public $fields = array();
+
+	/**
+	 * @var array
+	 */
+	static protected $paths = array(
+		'/Classes/Domain/Model/'
+	);
 
 	public function __construct($filepath = NULL) {
 		if ($filepath !== NULL) {
@@ -33,17 +41,6 @@ class Model {
 				)
 			);
 		}
-	}
-
-	public static function getExistingInstances() {
-		$finder = new Finder();
-		$files = $finder->files()->in(WORKING_DIRECTORY . '/Classes/Domain/Model/');
-		$instances = array();
-		foreach ($files as $controllerFile) {
-			$ingredientClassName = self::class;
-			$instances[] = new $ingredientClassName($controllerFile->getRealPath());
-		}
-		return $instances;
 	}
 
 	public function save($arguments) {
