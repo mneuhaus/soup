@@ -10,13 +10,24 @@
 	<f:for each="{recipe.ingredients}" key="ingredientName" as="ingredientClassName">
 		<div class="card-backdrop card-backdrop-{ingredientName}">
 			<div class="card-backdrop-header">{ingredientName}</div>
-			<f:for each="{ingredientClassName->s:ingredients()}" as="ingredient">
-				<input type="hidden" name="ingredients[{ingredient.id}][_class]" value="{ingredientClassName}" />
-				<f:render partial="{ingredientClassName -> s:format.classPartial()}" arguments="{ingredient: ingredient}" />
-			</f:for>
-			<a href="#" class="btn-round pull-right">
-				<i class="fa fa-plus"></i>
-			</a>
+			<div class="repeater" data-auto-add="0" data-placeholder="--template--">
+				<div class="repeater-items">
+					<f:for each="{ingredientClassName->s:ingredients()}" as="ingredient">
+						<div class="repeater-item">
+							<input type="hidden" name="ingredients[{ingredient.id}][_class]" value="{ingredientClassName}" />
+							<f:render partial="{ingredientClassName -> s:format.classPartial()}" arguments="{ingredient: ingredient}" />
+						</div>
+					</f:for>
+				</div>
+
+				<div class="repeater-item repeater-template">
+					<f:render partial="{ingredientClassName -> s:format.classPartial()}" arguments="{ingredient: {id: '--template--'}}" />
+				</div>
+
+				<a href="#" class="btn-round pull-right repeater-item-add">
+					<i class="fa fa-plus"></i>
+				</a>
+			</div>
 		</div>
 	</f:for>
 

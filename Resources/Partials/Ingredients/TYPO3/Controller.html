@@ -1,6 +1,7 @@
 <input type="hidden" name="ingredients[{ingredient.id}][_arguments][]" value="{ingredient.filepath}" />
+
 <f:render partial="Card" arguments="{header: ingredient.name}" contentAs="content">
-	<s:form.field name="ingredients[{ingredient.id}][name]" label="Controller Name" value="{ingredient.name}" />
+	<s:form.field name="ingredients[{ingredient.id}][name]" label="Controller Name" value="{ingredient.name}" class="form-control card-header-field" arguments="{cardSuffix: 'Controller'}" />
 
 	<s:form.field label="Actions">
 		<div class="form-sub repeater">

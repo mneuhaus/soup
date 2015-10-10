@@ -52,8 +52,8 @@ class Edit extends Command {
 
 		$tmpRouter = tempnam(sys_get_temp_dir(), 'soup-router') . '.php';
 		file_put_contents($tmpRouter, '<?php
-$possibleFilePath = "' . BOX_PATH . '/Resources/Public" . $_SERVER["REQUEST_URI"];
-if (file_exists($possibleFilePath)) {
+$possibleFilePath = "' . BOX_PATH . '/Resources/Assets" . $_SERVER["REQUEST_URI"];
+if (file_exists($possibleFilePath) & !is_dir($possibleFilePath)) {
 	$types = array(
 		"css" => "Content-Type: text/css",
 		"js" => "Content-Type: text/javascript"
