@@ -1,9 +1,17 @@
 <f:layout name="Default" />
 
 <f:section name="Main">
-<div class="card">
-	<f:for each="{relevantRecipes}" as="relevantRecipe">
-		<div class="card-header"><a href="recipe/{relevantRecipe}">{relevantRecipe}</a></div>
+	<f:for each="{books}" as="book">
+		<f:for each="{book.recipies}" key="path" as="recipie">
+			<div class="card">
+				<div class="card-header">
+					<a href="recipe/{recipie.type}/{recipie.path}">{recipie.name}</a>
+				</div>
+			</div>
+		</f:for>
+
+		<a href="recipe/new/{book.type}" class="btn-round pull-right">
+			<i class="material-icons">add</i>
+		</a>
 	</f:for>
-</div>
 </f:section>

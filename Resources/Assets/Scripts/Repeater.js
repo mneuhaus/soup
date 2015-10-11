@@ -6,12 +6,11 @@ $.widget("custom.repeater", {
     },
     _create: function() {
         this.setOptionsFromAttributes();
-        console.log(this.options);
         var repeater = this;
         this.itemsContainer = this.find('.repeater-items');
         this.template = this.find('.repeater-template');
 
-        if (this.options.autoAdd == true) {
+        if (this.options.autoAdd === true) {
             $(this.element).on("keyup", ".repeater-unused input", function() {
                 if ($(this).val().length > 0) {
                     $(this).parents('.repeater-unused').removeClass('repeater-unused');
@@ -37,7 +36,7 @@ $.widget("custom.repeater", {
             });
         });
 
-        $('form').submit(function(e) {
+        $('form').submit(function() {
             $('.repeater-unused, .repeater-template').remove();
         });
     },
@@ -52,10 +51,13 @@ $.widget("custom.repeater", {
     },
 
     addNewUnused: function() {
+        if (this.find('.repeater-unused').length > 0) {
+            return;
+        }
         var e = this.template.clone();
         e.removeClass('repeater-template');
         e.addClass('repeater-unused');
-        e.html(e.html().replace(/--id--/g, Math.random().toString(36).slice(2)));
+        e.html(e.html().replace(new RegExp(this.options.placeholder,"g"), Math.random().toString(36).slice(2)));
         this.itemsContainer.append(e);
         e.find('.card-expandable').cardExpandable();
         e.find('.repeater').repeater();

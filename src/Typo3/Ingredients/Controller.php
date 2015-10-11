@@ -1,6 +1,7 @@
 <?php
-namespace Famelo\Soup\Ingredients\TYPO3;
+namespace Famelo\Soup\Typo3\Ingredients;
 
+use Famelo\Archi\ComposerFacade;
 use Famelo\Archi\Php\ClassFacade;
 use Famelo\Soup\Core\Ingredients\AbstractIngredient;
 use Famelo\Soup\Utility\String;
@@ -11,7 +12,7 @@ use Symfony\Component\Finder\Finder;
  * See LICENSE.txt that was shipped with this package.
  */
 
-class Controller extends AbstractIngredient{
+class Controller extends AbstractIngredient {
 	/**
 	 * @var string
 	 */
@@ -27,19 +28,13 @@ class Controller extends AbstractIngredient{
 	 */
 	protected $filepath;
 
-	/**
-	 * @var array
-	 */
-	static protected $paths = array(
-		'/Classes/Controller/'
-	);
-
 	public function __construct($filepath = NULL) {
-		if ($filepath !== NULL) {
-			$this->facade = new ClassFacade($filepath);
-			$this->name = $this->facade->getName();
-			$this->filepath = $filepath;
+		if ($filepath === NULL || !file_exists($filepath)) {
+			$filepath = String::joinPaths(BASE_DIRECTORY, '../Resources/CodeTemplates/Typo3/Controller.php');
 		}
+		$this->facade = new ClassFacade($filepath);
+		$this->name = String::cutSuffix($this->facade->getName(), 'Controller');
+		$this->filepath = $filepath;
 	}
 
 	public function getFilepath() {
@@ -58,6 +53,13 @@ class Controller extends AbstractIngredient{
 	}
 
 	public function save($arguments) {
+		$className = ucfirst($arguments['name']) . 'Controller';
+		$targetFileName = 'Classes/Controller/' . $className . '.php';
+		$composer = new ComposerFacade('composer.json');
+		$namespace = $composer->getNamespace() . '\\Controller';
+		$this->facade->setNamespace($namespace);
+		$this->facade->setClassName($className);
+
 		$existingActions = $this->getActions();
 		foreach ($arguments['actions'] as $method => $data) {
 			if (is_array($data) && isset($data['_remove'])) {
@@ -70,9 +72,6 @@ class Controller extends AbstractIngredient{
 				$this->facade->addMethod(String::addSuffix($data, 'Action'));
 			}
 		}
-		$this->facade->save();
-		// ->makePublic()
-		// ->addParam($factory->param('someParam')->setTypeHint('SomeClass'))
-		// ->setDocComment('');
+		$this->facade->save($targetFileName);
 	}
 }

@@ -16,25 +16,6 @@ class AbstractIngredient {
 	 */
 	public $name;
 
-	/**
-	 * @var array
-	 */
-	static protected $paths = array(
-	);
-
-	public static function getExistingInstances() {
-		$finder = new Finder();
-		$instances = array();
-		foreach (static::$paths as $path) {
-			$files = $finder->files()->in(WORKING_DIRECTORY . $path);
-			foreach ($files as $file) {
-				$ingredientClassName = static::class;
-				$instances[] = new $ingredientClassName($file->getRealPath());
-			}
-		}
-		return $instances;
-	}
-
 	public function getId() {
 		return sha1(spl_object_hash($this));
 	}

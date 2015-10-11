@@ -1,0 +1,12 @@
+<f:layout name="Default" />
+
+<f:section name="Main">
+<h3>TYPO3</h3>
+<form method="POST">
+	<f:render partial="Ingredients" arguments="{ingredients: recipe.ingredients}" />
+
+	<button type="Submit" class="btn btn-round btn-round-big btn-save">
+		<i class="material-icons">save</i>
+	</button>
+</form>
+</f:section>

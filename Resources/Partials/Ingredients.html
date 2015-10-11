@@ -1,0 +1,42 @@
+<f:for each="{ingredients}" as="ingredientConfiguration">
+	<div class="card-backdrop">
+		<f:if condition="{ingredientConfiguration.multiple}">
+			<f:then>
+				<div class="card-backdrop-header">{ingredientConfiguration.title}</div>
+				<div class="repeater" data-auto-add="0" data-placeholder="--template--">
+					<div class="repeater-items">
+						<f:for each="{ingredientConfiguration.instances}" as="ingredient">
+							<div class="repeater-item">
+								<input type="hidden" name="ingredients[{ingredient.id}][_class]" value="{ingredientConfiguration.className}" />
+								<f:render partial="{ingredientConfiguration.className -> s:format.classPartial()}" arguments="{ingredient: ingredient}" />
+							</div>
+						</f:for>
+					</div>
+
+					<div class="repeater-item repeater-template">
+						<input type="hidden" name="ingredients[--template--][_class]" value="{ingredientConfiguration.className}" />
+						<f:render partial="{ingredientConfiguration.className -> s:format.classPartial()}" arguments="{ingredient: {id: '--template--'}}" />
+					</div>
+
+					<a href="#" class="btn-round pull-right repeater-item-add">
+						<i class="material-icons">add</i>
+					</a>
+				</div>
+			</f:then>
+			<f:else>
+				<f:if condition="{ingredientConfiguration.instances}">
+					<f:then>
+						<f:for each="{ingredientConfiguration.instances}" as="ingredient">
+							<input type="hidden" name="ingredients[{ingredient.id}][_class]" value="{ingredientConfiguration.className}" />
+							<f:render partial="{ingredientConfiguration.className -> s:format.classPartial()}" arguments="{ingredient: ingredient}" />
+						</f:for>
+					</f:then>
+					<f:else>
+						<input type="hidden" name="ingredients[--template--][_class]" value="{ingredientConfiguration.className}" />
+						<f:render partial="{ingredientConfiguration.className -> s:format.classPartial()}" arguments="{ingredient: {id: '--template--'}}" />
+					</f:else>
+				</f:if>
+			</f:else>
+		</f:if>
+	</div>
+</f:for>

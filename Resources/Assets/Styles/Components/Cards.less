@@ -1,0 +1,73 @@
+.card {
+    background: white;
+    margin-bottom: 20px;
+}
+
+.card-header,
+.card-body,
+.card-footer {
+    padding: 10px;
+    position: relative;
+}
+
+.card-header {
+    background: #6C727E;
+    color: #FCFFFF;
+    overflow:hidden;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 30px;
+    vertical-align: middle;
+    min-height: 50px;
+}
+
+.card-body {
+    font-size: 14px;
+    font-weight: 300;
+    text-overflow: ellipsis;
+    -webkit-transition: max-height 200ms ease-in;
+    -moz-transition: max-height 200ms ease-in;
+    -ms-transition: max-height 200ms ease-in;
+    -o-transition: max-height 200ms ease-in;
+    transition: max-height 200ms ease-in;
+    padding: 0;
+}
+
+.card-expandable .card-body {
+    display: none;
+}
+
+.card-actions {
+    -webkit-transition: opacity 300ms ease-in;
+    transition: opacity 300ms ease-in;
+    opacity: 0;
+}
+
+.card-header:hover .card-actions{
+    opacity: 1;
+}
+
+.card .btn-add {
+    opacity: 0;
+    -webkit-transition: opacity 200ms ease-in;
+    -moz-transition: opacity 200ms ease-in;
+    -ms-transition: opacity 200ms ease-in;
+    -o-transition: opacity 200ms ease-in;
+    transition: opacity 200ms ease-in;
+}
+
+.card:hover .btn-add {
+    opacity: 1;
+}
+
+.card-backdrop {
+    margin-bottom: 50px;
+}
+
+.card-backdrop-header {
+    font-weight: 400;
+    font-size: 16px;
+    text-transform: uppercase;
+    text-align: left;
+    margin-bottom: 10px;
+}

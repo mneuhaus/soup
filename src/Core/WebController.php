@@ -1,7 +1,8 @@
 <?php
 namespace Famelo\Soup\Core;
 
-use Famelo\Soup\Core\RecipeHandler;
+use Famelo\Soup\Core\BookHandler;
+use Famelo\Soup\Utility\String;
 use TYPO3Fluid\Fluid\View\TemplateView;
 
 /*
@@ -12,28 +13,47 @@ use TYPO3Fluid\Fluid\View\TemplateView;
 class WebController {
 
 	public function index($arguments) {
-		$recipeHandler = new RecipeHandler();
-		$relevantRecipes = $recipeHandler->getRelevantRecipies(WORKING_DIRECTORY);
+		$bookHandler = new BookHandler();
+		$books = $bookHandler->findRelevantBooks(WORKING_DIRECTORY);
 		$this->render('index', array(
-			'relevantRecipes' => $relevantRecipes
+			'books' => $books
 		));
 	}
 
-	public function recipe($arguments) {
-		$recipeHandler = new RecipeHandler();
-		$recipeInstance = $recipeHandler->getRecipe($arguments['recipe']);
+	public function newRecipe($arguments) {
+		$recipeClassName = String::classNameFromPath($arguments['recipe']);
+		$recipe = new $recipeClassName();
 
-		$this->render('recipe/' . $arguments['recipe'], array(
-			'recipe' => $recipeInstance
+		$this->render(str_replace('.', '/', String::cutSuffix($arguments['recipe'], 'Recipe')) . '/New', array(
+			'recipe' => $recipe
+		));
+	}
+
+	public function createRecipe($arguments) {
+		$recipeClassName = String::classNameFromPath($arguments['recipe']);
+		$recipe = new $recipeClassName();
+		$recipe->create($_POST);
+
+		$this->redirect('');
+	}
+
+	public function editRecipe($arguments) {
+		$recipeClassName = String::classNameFromPath($arguments['recipe']);
+		$recipe = new $recipeClassName();
+		chdir($arguments['path']);
+
+		$this->render(str_replace('.', '/', String::cutSuffix($arguments['recipe'], 'Recipe')) . '/Edit', array(
+			'recipe' => $recipe
 		));
 	}
 
 	public function saveRecipe($arguments) {
-		$recipeHandler = new RecipeHandler();
-		$recipeInstance = $recipeHandler->getRecipe($arguments['recipe']);
-		$recipeInstance->saveFields($_POST);
+		$recipeClassName = String::classNameFromPath($arguments['recipe']);
+		$recipe = new $recipeClassName();
+		chdir($arguments['path']);
+		$recipe->saveFields($_POST);
 
-		$this->redirect('recipe/' . $arguments['recipe']);
+		$this->redirect('recipe/' . $arguments['recipe'] . '/' . $arguments['path']);
 	}
 
 	public function redirect($path) {

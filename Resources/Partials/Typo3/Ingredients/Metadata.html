@@ -1,0 +1,15 @@
+<input type="hidden" name="ingredients[{ingredient.id}][_arguments][]" value="{ingredient.filepath}" />
+
+<f:render partial="Card" arguments="{header: 'Extension Information'}" contentAs="content">
+	<s:form.field name="ingredients[{ingredient.id}][extension_key]" label="Extension Key" placeholder="my_ext" value="{ingredient.extensionKey}" />
+
+	<s:form.field name="ingredients[{ingredient.id}][company]" label="Company" placeholder="Acme"  value="{ingredient.company}"/>
+
+	<s:form.field name="ingredients[{ingredient.id}][title]" label="Title" placeholder="My Extension" value="{ingredient.title}"/>
+
+	<s:form.field name="ingredients[{ingredient.id}][description]" label="Description" value="{ingredient.description}" />
+
+	<s:form.field name="ingredients[{ingredient.id}][author]" label="Author" value="{ingredient.author}" />
+
+	<s:form.field name="ingredients[{ingredient.id}][author_email]" label="Author E-Mail" value="{ingredient.authorEmail}" />
+</f:render>

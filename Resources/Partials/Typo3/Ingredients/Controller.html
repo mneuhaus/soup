@@ -11,7 +11,7 @@
 						<s:form.field name="ingredients[{ingredient.id}][actions][{action.name}]" label="Name" value="{action.name->s:string.cutSuffix(suffix: 'action')}" />
 
 						<a href="#" class="btn-round btn-round-small repeater-item-remove">
-							<i class="fa fa-close"></i>
+							<i class="material-icons">remove</i>
 						</a>
 					</div>
 				</f:for>
@@ -21,7 +21,7 @@
 				<s:form.field name="ingredients[{ingredient.id}][actions][--id--]" label="Name" value="" />
 
 				<a href="#" class="btn-round btn-round-small repeater-item-remove">
-					<i class="fa fa-close"></i>
+					<i class="material-icons">remove</i>
 				</a>
 			</div>
 		</div>

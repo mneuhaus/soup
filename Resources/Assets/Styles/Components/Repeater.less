@@ -1,0 +1,41 @@
+.repeater-item {
+    position: relative;
+}
+
+.repeater-item-remove {
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    opacity: 0;
+    -webkit-transition: opacity 200ms ease-in;
+    -moz-transition: opacity 200ms ease-in;
+    -ms-transition: opacity 200ms ease-in;
+    -o-transition: opacity 200ms ease-in;
+    transition: opacity 200ms ease-in;
+}
+
+.form-sub .repeater-item-remove {
+    right: -10px;
+    top: 5px;
+}
+
+.card:hover > .repeater-item-remove,
+.form-sub .repeater-item:hover .repeater-item-remove {
+    opacity: 1;
+}
+
+.repeater-template {
+    display: none;
+}
+
+.repeater-item-remove {
+    background: #FB7578;
+}
+
+.repeater-unused {
+    opacity: 0.3;
+
+    .repeater-item-remove {
+        display: none;
+    }
+}

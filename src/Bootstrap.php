@@ -6,8 +6,11 @@ define('BASE_DIRECTORY', __DIR__);
 
 $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/', '\Famelo\Soup\Core\WebController:index');
-    $r->addRoute('GET', '/recipe/{recipe}', '\Famelo\Soup\Core\WebController:recipe');
-    $r->addRoute('POST', '/recipe/{recipe}', '\Famelo\Soup\Core\WebController:saveRecipe');
+    $r->addRoute('GET', '/recipe/new/{recipe}', '\Famelo\Soup\Core\WebController:newRecipe');
+    $r->addRoute('POST', '/recipe/new/{recipe}', '\Famelo\Soup\Core\WebController:createRecipe');
+
+    $r->addRoute('GET', '/recipe/{recipe}/{path}', '\Famelo\Soup\Core\WebController:editRecipe');
+    $r->addRoute('POST', '/recipe/{recipe}/{path}', '\Famelo\Soup\Core\WebController:saveRecipe');
 });
 
 // Fetch method and URI from somewhere

@@ -23,8 +23,9 @@ class FieldViewHelper extends AbstractViewHelper {
 		$this->registerArgument('name', 'string', 'Name of the field', FALSE, NULL);
 		$this->registerArgument('control', 'string', 'Specifies the control to use to render this field', FALSE, 'Text');
 		$this->registerArgument('value', 'mixed', 'Value of the form field', FALSE, NULL);
+		$this->registerArgument('placeholder', 'mixed', 'Placeholder for the input', FALSE, NULL);
 		$this->registerArgument('wrap', 'string', 'Specifies the wrap used to render the field', FALSE, 'Default');
-		$this->registerArgument('class', 'string', 'control class', FALSE, 'Default');
+		$this->registerArgument('class', 'string', 'control class', FALSE, 'form-control');
 		$this->registerArgument('required', 'boolean', 'Specifies, if this form field is required', FALSE, FALSE);
 		$this->registerArgument('arguments', 'array', 'additional arguments for the control', FALSE, array());
 		$this->registerArgument('label', 'string', 'custom label for the field', FALSE, NULL);

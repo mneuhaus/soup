@@ -367,9 +367,29 @@ class String {
 		return implode('', $parts);
 	}
 
-	public static function pathToFormId($path) {
-		return str_replace('.', '-', $path);
-	}
+    public static function pathToFormId($path) {
+        return str_replace('.', '-', $path);
+    }
+
+    public static function underscoreToCamelcase($underscore) {
+        return preg_replace_callback(
+            "/(^|_)([a-z])/",
+            function($word) {
+                return strtoupper("$word[2]");
+            },
+            $underscore
+        );
+    }
+
+    public static function camelcaseToUnderscore($underscore) {
+        return preg_replace_callback(
+           "/(^|[a-z])([A-Z])/",
+            function($word) {
+                return strtolower(strlen($word[1]) ? "$word[1]_$word[2]" : "$word[2]");
+            },
+            $underscore
+        );
+    }
 
 	public static function pathToTranslationId($path) {
 		return preg_replace('/\.[0-9]*\./', '.', $path);
@@ -389,5 +409,38 @@ class String {
 	public static function endsWith($string, $suffix) {
 		return substr($string, strlen($suffix) * -1) === $suffix;
 	}
+
+    public static function relativePath($absolutePath) {
+        return trim(str_replace(getcwd(), '', $absolutePath), '/');
+    }
+
+    public static function relativeClass($className) {
+        return trim(str_replace(array('Famelo\Soup', '\\'), array('', '.'), $className), '.');
+    }
+
+    public static function classNameFromPath($path) {
+        return 'Famelo\Soup\\' . str_replace('.', '\\', $path);
+    }
+
+    public static function joinPaths() {
+        $paths = func_get_args();
+        $prefix = '';
+        $suffix = '';
+        if (substr(current($paths), 0, 1) == DIRECTORY_SEPARATOR) {
+            $prefix = DIRECTORY_SEPARATOR;
+        }
+        if (substr(end($paths), -1, 1) == DIRECTORY_SEPARATOR) {
+            $suffix = DIRECTORY_SEPARATOR;
+        }
+        foreach ($paths as $key => $path) {
+            if ($path === NULL) {
+                unset($paths[$key]);
+                continue;
+            }
+            $paths[$key] = trim($path, DIRECTORY_SEPARATOR);
+        }
+        $path = $prefix . implode(DIRECTORY_SEPARATOR, $paths) . $suffix;
+        return $path;
+    }
 }
 ?>

@@ -8,6 +8,7 @@
     "bootstrap": "3.*",
     "font-awesome": "*",
     "roboto-fontface": "*",
-    "matchHeight": "*"
+    "matchHeight": "*",
+    "material-design-icons": "~2.0.0"
   }
 }

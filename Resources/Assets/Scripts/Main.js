@@ -3,6 +3,7 @@ $(document).ready(function(){
 	$('.repeater').repeater();
 
 	$('body').on('keyup', '.card-header-field', function() {
-		$(this).parents('.card').find('.card-header-text').text($(this).val() + $(this).data('card-suffix'));
+		console.log($(this).val());
+		$(this).parents('.card').find('.card-header').text($(this).val() + $(this).data('card-suffix'));
 	});
 });
