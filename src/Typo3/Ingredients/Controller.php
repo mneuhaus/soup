@@ -37,6 +37,10 @@ class Controller extends AbstractIngredient {
 		$this->filepath = $filepath;
 	}
 
+	public function getArguments() {
+		return array($this->filepath);
+	}
+
 	public function getFilepath() {
 		return $this->filepath;
 	}

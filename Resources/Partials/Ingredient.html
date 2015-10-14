@@ -1,0 +1,9 @@
+<s:form.name prefix="ingredients.{ingredient.id}">
+	<input type="hidden" name="{s:form.name(name: '_class')}" value="{className}" />
+	<f:if condition="{ingredient.arguments}">
+		<f:for each="{ingredient.arguments}" as="argument">
+			<input type="hidden" name="{s:form.name(name: '_arguments')}[]" value="{argument}" />
+		</f:for>
+	</f:if>
+	<f:render partial="{className -> s:format.classPartial()}" arguments="{ingredient: ingredient}" />
+</s:form.name>

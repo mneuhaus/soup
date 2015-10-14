@@ -81,14 +81,5 @@ class WebController {
 		$view->getViewHelperResolver()->registerNamespace('s', 'Famelo\\Soup\\ViewHelpers');
 
 		echo $view->render();
-
-		// $variableProvider = new ExposeVariableProvider();
-		// $this->view->getRenderingContext()->setVariableProvider($variableProvider);
-
-		// $viewHelperResolver = new \Famelo\Cider\Fluid\ViewHelperResolver();
-		// $view->setViewHelperResolver($viewHelperResolver);
-
-		// $view->assign('foobar', 'MVC template');
-		// echo $view->render('Default');
 	}
 }

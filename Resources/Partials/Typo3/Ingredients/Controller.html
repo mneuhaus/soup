@@ -1,14 +1,12 @@
-<input type="hidden" name="ingredients[{ingredient.id}][_arguments][]" value="{ingredient.filepath}" />
-
 <f:render partial="Card" arguments="{header: ingredient.name}" contentAs="content">
-	<s:form.field name="ingredients[{ingredient.id}][name]" label="Controller Name" value="{ingredient.name}" class="form-control card-header-field" arguments="{cardSuffix: 'Controller'}" />
+	<s:form.field name="{s:form.name(name: 'name')}" label="Controller Name" value="{ingredient.name}" class="form-control card-header-field" arguments="{cardSuffix: 'Controller'}" />
 
 	<s:form.field label="Actions">
 		<div class="form-sub repeater">
 			<div class="repeater-items">
 				<f:for each="{ingredient.actions}" as="action">
 					<div class="repeater-item">
-						<s:form.field name="ingredients[{ingredient.id}][actions][{action.name}]" label="Name" value="{action.name->s:string.cutSuffix(suffix: 'action')}" />
+						<s:form.field name="{s:form.name(name: 'actions.{action.name}')}" label="Name" value="{action.name->s:string.cutSuffix(suffix: 'action')}" />
 
 						<a href="#" class="btn-round btn-round-small repeater-item-remove">
 							<i class="material-icons">remove</i>
@@ -18,7 +16,7 @@
 			</div>
 
 			<div class="repeater-item repeater-template">
-				<s:form.field name="ingredients[{ingredient.id}][actions][--id--]" label="Name" value="" />
+				<s:form.field name="{s:form.name(name: 'actions.--id--')}" label="Name" value="" />
 
 				<a href="#" class="btn-round btn-round-small repeater-item-remove">
 					<i class="material-icons">remove</i>

@@ -65,6 +65,10 @@ class Metadata extends AbstractIngredient {
 		$this->composer = new ComposerFacade('composer.json');
 	}
 
+	public function getArguments() {
+		return array($this->filepath);
+	}
+
 	public function getTitle() {
 		return $this->data['title'];
 	}

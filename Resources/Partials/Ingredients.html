@@ -7,15 +7,13 @@
 					<div class="repeater-items">
 						<f:for each="{ingredientConfiguration.instances}" as="ingredient">
 							<div class="repeater-item">
-								<input type="hidden" name="ingredients[{ingredient.id}][_class]" value="{ingredientConfiguration.className}" />
-								<f:render partial="{ingredientConfiguration.className -> s:format.classPartial()}" arguments="{ingredient: ingredient}" />
+								<f:render partial="Ingredient" arguments="{ingredient: ingredient, className: ingredientConfiguration.className}" />
 							</div>
 						</f:for>
 					</div>
 
 					<div class="repeater-item repeater-template">
-						<input type="hidden" name="ingredients[--template--][_class]" value="{ingredientConfiguration.className}" />
-						<f:render partial="{ingredientConfiguration.className -> s:format.classPartial()}" arguments="{ingredient: {id: '--template--'}}" />
+						<f:render partial="Ingredient" arguments="{ingredient: {id: '--template--'}, className: ingredientConfiguration.className}" />
 					</div>
 
 					<a href="#" class="btn-round pull-right repeater-item-add">
@@ -27,13 +25,11 @@
 				<f:if condition="{ingredientConfiguration.instances}">
 					<f:then>
 						<f:for each="{ingredientConfiguration.instances}" as="ingredient">
-							<input type="hidden" name="ingredients[{ingredient.id}][_class]" value="{ingredientConfiguration.className}" />
-							<f:render partial="{ingredientConfiguration.className -> s:format.classPartial()}" arguments="{ingredient: ingredient}" />
+							<f:render partial="Ingredient" arguments="{ingredient: ingredient, className: ingredientConfiguration.className}" />
 						</f:for>
 					</f:then>
 					<f:else>
-						<input type="hidden" name="ingredients[--template--][_class]" value="{ingredientConfiguration.className}" />
-						<f:render partial="{ingredientConfiguration.className -> s:format.classPartial()}" arguments="{ingredient: {id: '--template--'}}" />
+						<f:render partial="Ingredient" arguments="{ingredient: {id: '--template--'}, className: ingredientConfiguration.className}" />
 					</f:else>
 				</f:if>
 			</f:else>
