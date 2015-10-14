@@ -2,6 +2,7 @@
 namespace Famelo\Soup\TYPO3;
 
 use Famelo\Soup\Typo3\Ingredients\Metadata;
+use Famelo\Soup\Utility\Path;
 use Famelo\Soup\Utility\String;
 use Symfony\Component\Finder\Finder;
 
@@ -35,6 +36,14 @@ class ExtensionRecipe {
 			'paths' => array(
 				'Classes/Controller/' => '*Controller.php'
 			)
+		),
+		array(
+			'title' => 'Models',
+			'className' => '\Famelo\Soup\Typo3\Ingredients\Model',
+			'multiple' => TRUE,
+			'paths' => array(
+				'Classes/Domain/Model/' => '*.php'
+			)
 		)
 	);
 
@@ -43,12 +52,8 @@ class ExtensionRecipe {
 	}
 
 	public function getName() {
-		$metadata = new Metadata(String::joinPaths($this->path, 'ext_emconf.php'));
+		$metadata = new Metadata(Path::joinPaths($this->path, 'ext_emconf.php'));
 		return $metadata->getTitle() . ' (' . basename($this->path) . ')';
-	}
-
-	public function getId() {
-		return String::slugify($this->path);
 	}
 
 	public function getType() {
@@ -108,8 +113,12 @@ class ExtensionRecipe {
 
 	public function saveFields($fieldValues) {
 		foreach ($fieldValues['ingredients'] as $ingredientData) {
-			$reflection = new \ReflectionClass($ingredientData['_class']);
-			$ingredient = $reflection->newInstanceArgs($ingredientData['_arguments']);
+			if (isset($ingredientData['_arguments'])) {
+				$reflection = new \ReflectionClass($ingredientData['_class']);
+				$ingredient = $reflection->newInstanceArgs($ingredientData['_arguments']);
+			} else {
+				$ingredient = new $ingredientData['_class']();
+			}
 			$ingredient->save($ingredientData);
 		}
 	}

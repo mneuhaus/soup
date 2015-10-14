@@ -4,6 +4,7 @@ namespace Famelo\Soup\Typo3\Ingredients;
 use Famelo\Archi\ComposerFacade;
 use Famelo\Archi\Php\ClassFacade;
 use Famelo\Soup\Core\Ingredients\AbstractIngredient;
+use Famelo\Soup\Utility\Path;
 use Famelo\Soup\Utility\String;
 use Symfony\Component\Finder\Finder;
 
@@ -30,7 +31,7 @@ class Controller extends AbstractIngredient {
 
 	public function __construct($filepath = NULL) {
 		if ($filepath === NULL || !file_exists($filepath)) {
-			$filepath = String::joinPaths(BASE_DIRECTORY, '../Resources/CodeTemplates/Typo3/Controller.php');
+			$filepath = Path::joinPaths(BASE_DIRECTORY, '../Resources/CodeTemplates/Typo3/Controller.php');
 		}
 		$this->facade = new ClassFacade($filepath);
 		$this->name = String::cutSuffix($this->facade->getName(), 'Controller');
