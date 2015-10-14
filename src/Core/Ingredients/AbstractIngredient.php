@@ -10,7 +10,7 @@ use Symfony\Component\Finder\Finder;
  * See LICENSE.txt that was shipped with this package.
  */
 
-class AbstractIngredient {
+abstract class AbstractIngredient implements IngredientInterface {
 	/**
 	 * @var string
 	 */
