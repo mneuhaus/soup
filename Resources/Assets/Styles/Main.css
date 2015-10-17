@@ -178,6 +178,9 @@ a:hover {
 .form-group {
   overflow: hidden;
 }
+.form-control {
+  border-radius: 0;
+}
 .form-group {
   margin-bottom: 0;
 }
@@ -192,8 +195,7 @@ a:hover {
 }
 .form-group > label,
 .form-group > div {
-  padding-bottom: 15px;
-  padding-top: 15px;
+  padding: 8px;
   margin-bottom: 0;
 }
 .card .form-group > label {
@@ -217,10 +219,15 @@ a:hover {
   display: flex;
   flex-direction: column;
 }
+.repeater {
+  margin: 0px;
+}
 .repeater-item {
   position: relative;
+  margin-bottom: 20px;
 }
 .repeater-item-remove {
+  display: none;
   position: absolute;
   right: -10px;
   top: -10px;
@@ -230,6 +237,9 @@ a:hover {
   -ms-transition: opacity 200ms ease-in;
   -o-transition: opacity 200ms ease-in;
   transition: opacity 200ms ease-in;
+}
+.repeater-item .repeater-item-remove {
+  display: block;
 }
 .form-sub .repeater-item-remove {
   right: -10px;

@@ -5,7 +5,7 @@
 		<div class="form-sub repeater">
 			<div class="repeater-items">
 				<f:for each="{ingredient.actions}" as="action">
-					<div class="repeater-item">
+					<div class="repeater-item depth-2">
 						<s:form.field name="{s:form.name(name: 'actions.{action.name}')}" label="Name" value="{action.name->s:string.cutSuffix(suffix: 'action')}" />
 
 						<a href="#" class="btn-round btn-round-small repeater-item-remove">
