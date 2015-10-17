@@ -135,4 +135,40 @@ $EM_CONF[$_EXTKEY] = %s;',
 			return array_shift($parts);
 		}
 	}
+
+	public function getExtensionTypes() {
+		return array(
+			'fe' => 'Frontend',
+			'plugin' => 'Frontend Plugins',
+			'be' => 'Backend',
+			'module' => 'Backend Modules',
+			'services' => 'Services',
+			'example' => 'Examples',
+			'misc' => 'Miscellaneous',
+			'templates' => 'Templates',
+			'doc' => 'Documentation'
+		);
+	}
+
+	public function getExtensionType() {
+		return $this->data['category'];
+	}
+
+	public function getExtensionStates() {
+		return array(
+			'alpha' => 'Alpha (Very initial development)',
+			'beta' => 'Beta (Under current development, should work partly)',
+			'stable' => 'Stable (Stable and used in production)',
+			'experimental' => 'Experimental (Nobody knows if this is going anywhere yet...)',
+			'test' => 'Test (Test extension, demonstrates concepts etc.)'
+		);
+	}
+
+	public function getExtensionState() {
+		return $this->data['state'];
+	}
+
+	public function getVersion() {
+		return $this->data['version'];
+	}
 }
