@@ -38,6 +38,16 @@ class Controller extends AbstractIngredient {
 		$this->filepath = $filepath;
 	}
 
+	public static function getInstances() {
+		$finder = new Finder();
+		$files = $finder->files()->in('.')->path('Classes/Controller/')->name('*Controller.php');
+		$instances = array();
+		foreach ($files as $file) {
+			$instances[] = new Controller($file->getRealPath());
+		}
+		return $instances;
+	}
+
 	public function getArguments() {
 		return array($this->filepath);
 	}

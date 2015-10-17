@@ -24,26 +24,17 @@ class ExtensionRecipe {
 		array(
 			'title' => 'Metadata',
 			'className' => '\Famelo\Soup\Typo3\Ingredients\Metadata',
-			'multiple' => FALSE,
-			'paths' => array(
-				'' => 'ext_emconf.php'
-			)
+			'multiple' => FALSE
 		),
 		array(
 			'title' => 'Controller',
 			'className' => '\Famelo\Soup\Typo3\Ingredients\Controller',
-			'multiple' => TRUE,
-			'paths' => array(
-				'Classes/Controller/' => '*Controller.php'
-			)
+			'multiple' => TRUE
 		),
 		array(
 			'title' => 'Models',
 			'className' => '\Famelo\Soup\Typo3\Ingredients\Model',
-			'multiple' => TRUE,
-			'paths' => array(
-				'Classes/Domain/Model/' => '*.php'
-			)
+			'multiple' => TRUE
 		)
 	);
 
@@ -67,22 +58,7 @@ class ExtensionRecipe {
 	public function getIngredients() {
 		$ingredients = $this->ingredients;
 		foreach ($ingredients as $key => $ingredientConfiguration) {
-			$ingredients[$key]['instances'] = array();
-
-			foreach ($ingredientConfiguration['paths'] as $path => $filter) {
-				if ($path !== '' && !file_exists($path)) {
-					continue;
-				}
-				$finder = new Finder();
-				if (!empty($path)) {
-					$files = $finder->files()->in('.')->path($path)->name($filter);
-				} else {
-					$files = $finder->files()->in('.')->name($filter)->depth(0);
-				}
-				foreach ($files as $file) {
-					$ingredients[$key]['instances'][] = new $ingredientConfiguration['className']($file->getRealPath());
-				}
-			}
+			$ingredients[$key]['instances'] = $ingredientConfiguration['className']::getInstances();
 		}
 		return $ingredients;
 	}

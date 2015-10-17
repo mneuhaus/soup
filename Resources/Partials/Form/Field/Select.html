@@ -1,5 +1,5 @@
 <select name="{name}" id="{id}" class="{class}">
-	<f:for each="{option}" key="optionKey" as="optionValue">
+	<f:for each="{options}" key="optionKey" as="optionValue">
 		<f:if condition="{optionKey}=={value}">
 			<f:then>
 				<option value="{optionKey}" selected="selected">{optionValue}</option>

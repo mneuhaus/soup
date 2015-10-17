@@ -39,6 +39,16 @@ class Model extends AbstractIngredient {
 		$this->name = $this->facade->getName();
 	}
 
+	public static function getInstances() {
+		$finder = new Finder();
+		$files = $finder->files()->in('.')->path('Classes/Domain/Model/')->name('*.php');
+		$instances = array();
+		foreach ($files as $file) {
+			$instances[] = new Model($file->getRealPath());
+		}
+		return $instances;
+	}
+
 	public function getArguments() {
 		return array($this->filepath);
 	}
@@ -76,7 +86,9 @@ class Model extends AbstractIngredient {
 					$this->facade->renameProperty($property, $data['name']);
 				}
 			} else {
-				$this->facade->addProperty($data['name']);
+				$this->facade->addProperty($data['name'], NULL, array(
+					'propertyType' => $data['type']
+				));
 			}
 		}
 

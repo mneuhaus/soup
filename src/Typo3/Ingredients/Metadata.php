@@ -51,7 +51,7 @@ class Metadata extends AbstractIngredient {
 		'Classes/Controller/'
 	);
 
-	public function __construct($filepath = NULL, $recipe = NULL) {
+	public function __construct($filepath = NULL) {
 		if ($filepath === NULL || !file_exists($filepath)) {
 			$filepath = Path::joinPaths(BASE_DIRECTORY, '../Resources/CodeTemplates/Typo3/ext_emconf.php');
 		} else {
@@ -64,6 +64,12 @@ class Metadata extends AbstractIngredient {
 		$this->data = $EM_CONF[$_EXTKEY];
 
 		$this->composer = new ComposerFacade('composer.json');
+	}
+
+	public static function getInstances() {
+		if (file_exists('ext_emconf.php')) {
+			return array(new Metadata('ext_emconf.php'));
+		}
 	}
 
 	public function getArguments() {
