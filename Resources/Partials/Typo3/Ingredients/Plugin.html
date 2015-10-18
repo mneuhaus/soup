@@ -1,0 +1,30 @@
+<f:render partial="Card" arguments="{header: ingredient.name, type: 'Plugin', color: 'pink'}" contentAs="content">
+	<s:form.field name="{s:form.name(name: 'name')}" label="Name" value="{ingredient.name}" class="form-control" />
+	<s:form.field name="{s:form.name(name: 'title')}" label="Title" value="{ingredient.title}" class="form-control card-header-field" />
+
+	<s:form.field label="Controller">
+		<div class="form-sub repeater">
+			<div class="repeater-items">
+				<f:for each="{ingredient.cachedControllers}" key="controllerName" as="actions">
+					<div class="repeater-item depth-2">
+						<s:form.field name="{s:form.name(name: 'cachedControllers.{controllerName}')}"  value="{controllerName: controllerName, actions: actions}" control="PluginController" wrap="" />
+
+						<a href="#" class="btn-round btn-round-small repeater-item-remove">
+							<i class="material-icons">remove</i>
+						</a>
+					</div>
+				</f:for>
+			</div>
+
+			<div class="repeater-item repeater-template depth-2">
+				<s:form.field name="{s:form.name(name: 'cachedControllers.--id--')}" label="Name" value="{controllerName: controllerName, actions: actions}" control="PluginController"  wrap="" />
+
+				<a href="#" class="btn-round btn-round-small repeater-item-remove">
+					<i class="material-icons">remove</i>
+				</a>
+			</div>
+
+    		<p class="help-block"></p>
+		</div>
+	</s:form.field>
+</f:render>

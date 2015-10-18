@@ -1,4 +1,4 @@
-<f:render partial="Card" arguments="{header: ingredient.name}" contentAs="content">
+<f:render partial="Card" arguments="{header: ingredient.name, type: 'Controller', color: 'cyan'}" contentAs="content">
 	<s:form.field name="{s:form.name(name: 'name')}" label="Controller Name" value="{ingredient.name}" class="form-control card-header-field" arguments="{cardSuffix: 'Controller'}" />
 
 	<s:form.field label="Actions">
@@ -15,7 +15,7 @@
 				</f:for>
 			</div>
 
-			<div class="repeater-item repeater-template">
+			<div class="repeater-item repeater-template depth-2">
 				<s:form.field name="{s:form.name(name: 'actions.--id--')}" label="Name" value="" />
 
 				<a href="#" class="btn-round btn-round-small repeater-item-remove">

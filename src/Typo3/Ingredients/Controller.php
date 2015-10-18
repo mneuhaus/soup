@@ -67,6 +67,10 @@ class Controller extends AbstractIngredient {
 		return $actions;
 	}
 
+	public function remove($arguments) {
+		unlink($this->filepath);
+	}
+
 	public function save($arguments) {
 		$className = ucfirst($arguments['name']) . 'Controller';
 		$targetFileName = 'Classes/Controller/' . $className . '.php';

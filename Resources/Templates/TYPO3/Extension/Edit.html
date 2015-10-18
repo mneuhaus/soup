@@ -5,7 +5,28 @@
 <form method="POST">
 	<f:render partial="Ingredients" arguments="{ingredients: recipe.ingredients}" />
 
-	<button type="Submit" class="btn btn-round btn-round-big btn-save">
+
+
+	<div class="dropdown dropdown-add">
+		<button type="Submit" class="btn btn-round btn-round-big btn-add depth-4" data-toggle="dropdown">
+			<i class="material-icons">add</i>
+		</button>
+		<ul class="dropdown-menu depth-4">
+			<f:for each="{recipe.ingredients}" as="ingredientConfiguration">
+				<f:if condition="{ingredientConfiguration.multiple}">
+					<f:then>
+						<li>
+							<a href="#repeater{ingredientConfiguration.className -> s:format.classId()}">
+								{ingredientConfiguration.title}
+							</a>
+						</li>
+					</f:then>
+				</f:if>
+			</f:for>
+		</ul>
+	</div>
+
+	<button type="Submit" class="btn btn-round btn-round-big btn-save depth-4">
 		<i class="material-icons">save</i>
 	</button>
 </form>

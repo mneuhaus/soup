@@ -32,10 +32,15 @@ class ExtensionRecipe {
 			'multiple' => TRUE
 		),
 		array(
-			'title' => 'Models',
-			'className' => '\Famelo\Soup\Typo3\Ingredients\Model',
+			'title' => 'Plugin',
+			'className' => '\Famelo\Soup\Typo3\Ingredients\Plugin',
 			'multiple' => TRUE
-		)
+		),
+		// array(
+		// 	'title' => 'Models',
+		// 	'className' => '\Famelo\Soup\Typo3\Ingredients\Model',
+		// 	'multiple' => TRUE
+		// )
 	);
 
 	public function __construct($path = NULL) {
@@ -89,13 +94,18 @@ class ExtensionRecipe {
 
 	public function saveFields($fieldValues) {
 		foreach ($fieldValues['ingredients'] as $ingredientData) {
+			// var_dump($ingredientData);
 			if (isset($ingredientData['_arguments'])) {
 				$reflection = new \ReflectionClass($ingredientData['_class']);
 				$ingredient = $reflection->newInstanceArgs($ingredientData['_arguments']);
 			} else {
 				$ingredient = new $ingredientData['_class']();
 			}
-			$ingredient->save($ingredientData);
+			if (isset($ingredientData['_remove'])) {
+				$ingredient->remove($ingredientData);
+			} else {
+				$ingredient->save($ingredientData);
+			}
 		}
 	}
 }

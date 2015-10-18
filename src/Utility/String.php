@@ -86,5 +86,13 @@ class String {
     public static function classNameFromPath($path) {
         return 'Famelo\Soup\\' . str_replace('.', '\\', $path);
     }
+
+    public static function prefixLinesWith($string, $prefix) {
+        $lines = explode(chr(10), $string);
+        foreach ($lines as $key => $line) {
+            $lines[$key] = $prefix . $line;
+        }
+        return implode("\r\n", $lines);
+    }
 }
 ?>

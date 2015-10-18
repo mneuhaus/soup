@@ -29,7 +29,9 @@ $.widget("custom.repeater", {
         $(this.element).on("click", ".repeater-item-remove", function(e) {
             e.preventDefault();
             var item = $(this).parents('.repeater-item').first();
-            repeater.element.append('<input type="hidden" name="' + item.find('input').attr('name') + '[_remove]' + '" value=1>');
+            var referenceData = item.find('.repeater-reference-data');
+            referenceData.append('<input type="text" name="' + referenceData.attr('data-namespace') + '[_remove]' + '" value=1>');
+            repeater.element.append(referenceData);
             item.find('.repeater-item-remove').remove();
             item.slideUp(function(){
                 item.remove();
@@ -65,7 +67,9 @@ $.widget("custom.repeater", {
     },
 
     addNew: function() {
-        return this.addNewUnused().removeClass('repeater-unused');
+        var newItem = this.addNewUnused().removeClass('repeater-unused');
+        newItem.find('.card .card-body').first().show();
+        newItem.find('.card .card-body input').first().focus();
     },
 
     find: function(selector) {

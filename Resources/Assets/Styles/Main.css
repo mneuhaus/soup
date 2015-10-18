@@ -40,12 +40,12 @@ a:hover {
 }
 .card {
   background: white;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 .card-header,
 .card-body,
 .card-footer {
-  padding: 10px;
+  padding: 10px 20px;
   position: relative;
 }
 .card-header {
@@ -91,15 +91,53 @@ a:hover {
 .card:hover .btn-add {
   opacity: 1;
 }
-.card-backdrop {
-  margin-bottom: 50px;
-}
 .card-backdrop-header {
   font-weight: 400;
-  font-size: 16px;
+  font-size: 14px;
+  color: #aaa;
   text-transform: uppercase;
   text-align: left;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
+}
+.card-type {
+  font-weight: 400;
+  font-size: 14px;
+  opacity: 0.5;
+  text-transform: uppercase;
+  float: right;
+}
+.card-cyan .card-header {
+  background: #42A5F5;
+}
+.card-purple .card-header {
+  background: #AB47BC;
+}
+.card-pink .card-header {
+  background: #EC407A;
+}
+.card-red .card-header {
+  background: #EF5350;
+}
+.card-dark-purple .card-header {
+  background: #7E57C2;
+}
+.card-indigo .card-header {
+  background: #5C6BC0;
+}
+.card-blue .card-header {
+  background: #42A5F5;
+}
+.card-amber .card-header {
+  background: #FFCA28;
+}
+.card-teal .card-header {
+  background: #26A69A;
+}
+.card-orange .card-header {
+  background: #FFA726;
+}
+.card-green .card-header {
+  background: #66BB6A;
 }
 .btn-round {
   border-radius: 60px;
@@ -141,7 +179,6 @@ a:hover {
   position: fixed;
   right: 15px;
   bottom: 15px;
-  background: #45CDC8;
 }
 .btn-round-big {
   width: 48px;
@@ -150,6 +187,18 @@ a:hover {
 }
 .btn-round-big .material-icons {
   font-size: 30px;
+}
+.dropdown-add {
+  position: fixed;
+  right: 15px;
+  bottom: 80px;
+}
+.dropdown-add .dropdown-menu {
+  top: auto;
+  bottom: 105%;
+  right: 0px;
+  left: auto;
+  border-radius: 0;
 }
 .depth-2 {
   z-index: 2;
@@ -174,6 +223,13 @@ a:hover {
 .depth-7 {
   z-index: 7;
   box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+}
+.dropdown-menu {
+  padding: 0;
+}
+.dropdown-menu > li > a {
+  padding: 10px 20px;
+  border-bottom: 1px solid #eee;
 }
 .form-group {
   overflow: hidden;
@@ -219,18 +275,36 @@ a:hover {
   display: flex;
   flex-direction: column;
 }
+.form-row {
+  display: flex;
+  flex-direction: row;
+  overflow: visible;
+  padding: 10px;
+  margin-right: -5px;
+}
+.form-row > * {
+  margin-right: 10px;
+}
 .repeater {
-  margin: 0px;
+  margin: 0px 0px 0px;
+  position: relative;
 }
 .repeater-item {
   position: relative;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
 }
-.repeater-item-remove {
+.repeater-item > .card {
+  margin-bottom: 0;
+}
+.repeater-item .repeater-item {
+  margin-bottom: 10px;
+}
+.repeater-item-remove,
+.repeater-item-add {
   display: none;
   position: absolute;
-  right: -10px;
-  top: -10px;
+  right: -15px;
+  top: 10px;
   opacity: 0;
   -webkit-transition: opacity 200ms ease-in;
   -moz-transition: opacity 200ms ease-in;
@@ -238,7 +312,12 @@ a:hover {
   -o-transition: opacity 200ms ease-in;
   transition: opacity 200ms ease-in;
 }
-.repeater-item .repeater-item-remove {
+.repeater-item-add {
+  bottom: -10px;
+  top: auto;
+}
+.repeater-item .repeater-item-remove,
+.repeater-item .repeater-item-add {
   display: block;
 }
 .form-sub .repeater-item-remove {
@@ -246,7 +325,8 @@ a:hover {
   top: 5px;
 }
 .card:hover > .repeater-item-remove,
-.form-sub .repeater-item:hover .repeater-item-remove {
+.form-sub .repeater-item:hover .repeater-item-remove,
+.card:hover > .repeater-item-add {
   opacity: 1;
 }
 .repeater-template {

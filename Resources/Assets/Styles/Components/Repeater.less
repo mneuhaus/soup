@@ -1,17 +1,27 @@
 .repeater {
-    margin: 0px;
+    margin: 0px 0px 0px;
+    position: relative;
 }
 
 .repeater-item {
     position: relative;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
+
+    & > .card {
+        margin-bottom: 0;
+    }
+
+    .repeater-item {
+        margin-bottom: 10px;
+    }
 }
 
-.repeater-item-remove {
+.repeater-item-remove,
+.repeater-item-add {
     display: none;
     position: absolute;
-    right: -10px;
-    top: -10px;
+    right: -15px;
+    top: 10px;
     opacity: 0;
     -webkit-transition: opacity 200ms ease-in;
     -moz-transition: opacity 200ms ease-in;
@@ -20,8 +30,14 @@
     transition: opacity 200ms ease-in;
 }
 
+.repeater-item-add {
+    bottom: -10px;
+    top: auto;
+}
+
 .repeater-item {
-    .repeater-item-remove {
+    .repeater-item-remove,
+    .repeater-item-add {
         display: block;
     }
 }
@@ -32,7 +48,8 @@
 }
 
 .card:hover > .repeater-item-remove,
-.form-sub .repeater-item:hover .repeater-item-remove {
+.form-sub .repeater-item:hover .repeater-item-remove,
+.card:hover > .repeater-item-add {
     opacity: 1;
 }
 

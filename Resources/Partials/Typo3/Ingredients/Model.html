@@ -1,4 +1,4 @@
-<f:render partial="Card" arguments="{header: ingredient.name}" contentAs="content">
+<f:render partial="Card" arguments="{header: ingredient.name, type: 'Model', color: 'purple'}" contentAs="content">
 	<s:form.field name="{s:form.name(name: 'name')}" label="Name" value="{ingredient.name}" class="form-control card-header-field" />
 
 	<s:form.field label="Properties">

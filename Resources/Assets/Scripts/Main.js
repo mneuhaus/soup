@@ -3,7 +3,11 @@ $(document).ready(function(){
 	$('.repeater').repeater();
 
 	$('body').on('keyup', '.card-header-field', function() {
-		console.log($(this).val());
-		$(this).parents('.card').find('.card-header').text($(this).val() + $(this).data('card-suffix'));
+		$(this).parents('.card').find('.card-header .card-header-text').text($(this).val() + $(this).data('card-suffix'));
+	});
+
+	$('.dropdown-add .dropdown-menu a').click(function(e){
+		e.preventDefault();
+		$($(this).attr('href') + ' .repeater-item-add').click();
 	});
 });
