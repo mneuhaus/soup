@@ -224,3 +224,7 @@ task('release:replaceCurrent', [
     'release:createGithubRelease',
     'release:addPharToRelease'
 ]);
+
+task('soup:build', [
+    'release:createPhar',
+]);
