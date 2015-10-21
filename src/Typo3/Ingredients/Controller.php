@@ -3,6 +3,7 @@ namespace Famelo\Soup\Typo3\Ingredients;
 
 use Famelo\Archi\ComposerFacade;
 use Famelo\Archi\Php\ClassFacade;
+use Famelo\Archi\Typo3\ControllerFacade;
 use Famelo\Soup\Core\Ingredients\AbstractIngredient;
 use Famelo\Soup\Utility\Path;
 use Famelo\Soup\Utility\String;
@@ -14,6 +15,7 @@ use Symfony\Component\Finder\Finder;
  */
 
 class Controller extends AbstractIngredient {
+
 	/**
 	 * @var string
 	 */
@@ -30,11 +32,8 @@ class Controller extends AbstractIngredient {
 	protected $filepath;
 
 	public function __construct($filepath = NULL) {
-		if ($filepath === NULL || !file_exists($filepath)) {
-			$filepath = Path::joinPaths(BASE_DIRECTORY, '../Resources/CodeTemplates/Typo3/Controller.php');
-		}
-		$this->facade = new ClassFacade($filepath);
-		$this->name = String::cutSuffix($this->facade->getName(), 'Controller');
+		$this->facade = new ControllerFacade($filepath);
+		$this->name = String::cutSuffix($this->facade->name, 'Controller');
 		$this->filepath = $filepath;
 	}
 
@@ -68,29 +67,26 @@ class Controller extends AbstractIngredient {
 	}
 
 	public function remove($arguments) {
-		unlink($this->filepath);
+		$this->facade->remove();
 	}
 
 	public function save($arguments) {
-		$className = ucfirst($arguments['name']) . 'Controller';
-		$targetFileName = 'Classes/Controller/' . $className . '.php';
-		$composer = new ComposerFacade('composer.json');
-		$namespace = $composer->getNamespace() . '\\Controller';
-		$this->facade->setNamespace($namespace);
-		$this->facade->setClassName($className);
+		$this->facade->name = $arguments['name'];
 
-		$existingActions = $this->getActions();
-		foreach ($arguments['actions'] as $method => $data) {
-			if (is_array($data) && isset($data['_remove'])) {
-				$this->facade->removeMethod($method);
-			} else if (isset($existingActions[$method])) {
-				if ($method !== String::addSuffix($data, 'Action')) {
-					$this->facade->renameMethod($method, String::addSuffix($data, 'Action'));
+		$composer = new ComposerFacade('composer.json');
+		$this->facade->namespace = $composer->getNamespace() . '\\Controller';;
+
+		foreach ($arguments['actions'] as $action => $data) {
+			if (isset($data['_remove'])) {
+				$this->facade->removeAction($action);
+			} else if ($this->facade->hasAction($action)) {
+				if ($action !== $data['name']) {
+					$this->facade->renameAction($action, $data['name']);
 				}
 			} else {
-				$this->facade->addMethod(String::addSuffix($data, 'Action'));
+				$this->facade->addAction($data['name']);
 			}
 		}
-		$this->facade->save($targetFileName);
+		$this->facade->save();
 	}
 }

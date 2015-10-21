@@ -6,7 +6,7 @@
 			<div class="repeater-items">
 				<f:for each="{ingredient.actions}" as="action">
 					<div class="repeater-item depth-2">
-						<s:form.field name="{s:form.name(name: 'actions.{action.name}')}" label="Name" value="{action.name->s:string.cutSuffix(suffix: 'action')}" />
+						<s:form.field name="{s:form.name(name: 'actions.{action.name}.name')}" label="Name" value="{action.name->s:string.cutSuffix(suffix: 'action')}" />
 
 						<a href="#" class="btn-round btn-round-small repeater-item-remove">
 							<i class="material-icons">remove</i>
@@ -16,7 +16,7 @@
 			</div>
 
 			<div class="repeater-item repeater-template depth-2">
-				<s:form.field name="{s:form.name(name: 'actions.--id--')}" label="Name" value="" />
+				<s:form.field name="{s:form.name(name: 'actions.--id--.name')}" label="Name" value="" />
 
 				<a href="#" class="btn-round btn-round-small repeater-item-remove">
 					<i class="material-icons">remove</i>

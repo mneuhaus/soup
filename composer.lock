@@ -13,12 +13,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/mneuhaus/famelo-archi.git",
-                "reference": "ca22fd68411d2b1e53c8f1a6882338d1d4ed2d2f"
+                "reference": "ac1907771c1fdacfc7ba2de42a3183108f275362"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mneuhaus/famelo-archi/zipball/ca22fd68411d2b1e53c8f1a6882338d1d4ed2d2f",
-                "reference": "ca22fd68411d2b1e53c8f1a6882338d1d4ed2d2f",
+                "url": "https://api.github.com/repos/mneuhaus/famelo-archi/zipball/ac1907771c1fdacfc7ba2de42a3183108f275362",
+                "reference": "ac1907771c1fdacfc7ba2de42a3183108f275362",
                 "shasum": ""
             },
             "require": {
@@ -42,7 +42,7 @@
                 }
             ],
             "description": "Library to helps to create and modify code in various languages",
-            "time": "2015-10-04 20:50:32"
+            "time": "2015-10-18 23:51:17"
         },
         {
             "name": "filp/whoops",
@@ -50,12 +50,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/filp/whoops.git",
-                "reference": "cfe9ce209d2705fece1743f0af45f58fec840458"
+                "reference": "9a393ceb80f7497b6513feb574638e87048fed55"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filp/whoops/zipball/cfe9ce209d2705fece1743f0af45f58fec840458",
-                "reference": "cfe9ce209d2705fece1743f0af45f58fec840458",
+                "url": "https://api.github.com/repos/filp/whoops/zipball/9a393ceb80f7497b6513feb574638e87048fed55",
+                "reference": "9a393ceb80f7497b6513feb574638e87048fed55",
                 "shasum": ""
             },
             "require": {
@@ -100,7 +100,7 @@
                 "whoops",
                 "zf2"
             ],
-            "time": "2015-07-23 15:48:15"
+            "time": "2015-09-27 09:47:06"
         },
         {
             "name": "herrera-io/json",
@@ -440,12 +440,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "98d28d7aa04e2d92fea2b375373878d0b1fce992"
+                "reference": "33602889c1dbf9087d6b715aa90e95e2a3fc058e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/98d28d7aa04e2d92fea2b375373878d0b1fce992",
-                "reference": "98d28d7aa04e2d92fea2b375373878d0b1fce992",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/33602889c1dbf9087d6b715aa90e95e2a3fc058e",
+                "reference": "33602889c1dbf9087d6b715aa90e95e2a3fc058e",
                 "shasum": ""
             },
             "require": {
@@ -483,7 +483,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2015-10-03 10:17:41"
+            "time": "2015-10-21 18:30:17"
         },
         {
             "name": "seld/jsonlint",
@@ -741,12 +741,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/TYPO3Fluid/Fluid.git",
-                "reference": "2cc43f1b9419ed64b177e514a5dd383c72b5b0be"
+                "reference": "be13e63de8b314369c363c4a5094119b0129f4c2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/TYPO3Fluid/Fluid/zipball/2cc43f1b9419ed64b177e514a5dd383c72b5b0be",
-                "reference": "2cc43f1b9419ed64b177e514a5dd383c72b5b0be",
+                "url": "https://api.github.com/repos/TYPO3Fluid/Fluid/zipball/be13e63de8b314369c363c4a5094119b0129f4c2",
+                "reference": "be13e63de8b314369c363c4a5094119b0129f4c2",
                 "shasum": ""
             },
             "require-dev": {
@@ -771,7 +771,7 @@
                 "LGPL-3.0+"
             ],
             "description": "The TYPO3 Fluid template rendering engine",
-            "time": "2015-10-09 12:15:10"
+            "time": "2015-10-12 20:45:52"
         }
     ],
     "packages-dev": [],

@@ -231,6 +231,9 @@ a:hover {
   padding: 10px 20px;
   border-bottom: 1px solid #eee;
 }
+.container > form {
+  margin: 0 40px;
+}
 .form-group {
   overflow: hidden;
 }
