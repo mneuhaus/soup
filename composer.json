@@ -8,12 +8,10 @@
 	},
     "require": {
         "typo3fluid/fluid": "*@dev",
-        "filp/whoops": "^1.2@dev",
         "symfony/finder": "^2.7",
         "symfony\/console": "~2.7",
         "symfony\/finder": "~2.7",
         "symfony\/process": "~2.7",
-        "symfony\/filesystem": "~2.7",
         "kherge\/amend": "3.*",
         "nikic/fast-route": "^0.6.0",
         "nikic/php-parser": "dev-master",

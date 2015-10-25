@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "6500e1ecf785e06122cabc2617136ee7",
-    "content-hash": "1e2214d1e8675e9fc01dd1944fee9cca",
+    "hash": "c794a33375d82307f9130803aa5b4c61",
+    "content-hash": "7a47004ffdc259a4d501360c3ef3521b",
     "packages": [
         {
             "name": "famelo/archi",
@@ -13,12 +13,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/mneuhaus/famelo-archi.git",
-                "reference": "ac1907771c1fdacfc7ba2de42a3183108f275362"
+                "reference": "e1472c6ca92d5ed66a22116f8a7e59379cb5ad9e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mneuhaus/famelo-archi/zipball/ac1907771c1fdacfc7ba2de42a3183108f275362",
-                "reference": "ac1907771c1fdacfc7ba2de42a3183108f275362",
+                "url": "https://api.github.com/repos/mneuhaus/famelo-archi/zipball/e1472c6ca92d5ed66a22116f8a7e59379cb5ad9e",
+                "reference": "e1472c6ca92d5ed66a22116f8a7e59379cb5ad9e",
                 "shasum": ""
             },
             "require": {
@@ -42,65 +42,7 @@
                 }
             ],
             "description": "Library to helps to create and modify code in various languages",
-            "time": "2015-10-18 23:51:17"
-        },
-        {
-            "name": "filp/whoops",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/filp/whoops.git",
-                "reference": "9a393ceb80f7497b6513feb574638e87048fed55"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/filp/whoops/zipball/9a393ceb80f7497b6513feb574638e87048fed55",
-                "reference": "9a393ceb80f7497b6513feb574638e87048fed55",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "require-dev": {
-                "mockery/mockery": "0.9.*"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.2-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Whoops": "src/"
-                },
-                "classmap": [
-                    "src/deprecated"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Filipe Dobreira",
-                    "homepage": "https://github.com/filp",
-                    "role": "Developer"
-                }
-            ],
-            "description": "php error handling for cool kids",
-            "homepage": "https://github.com/filp/whoops",
-            "keywords": [
-                "error",
-                "exception",
-                "handling",
-                "library",
-                "silex-provider",
-                "whoops",
-                "zf2"
-            ],
-            "time": "2015-09-27 09:47:06"
+            "time": "2015-10-25 19:11:45"
         },
         {
             "name": "herrera-io/json",
@@ -589,55 +531,6 @@
             "time": "2015-09-25 08:32:23"
         },
         {
-            "name": "symfony/filesystem",
-            "version": "v2.7.5",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/filesystem.git",
-                "reference": "a17f8a17c20e8614c15b8e116e2f4bcde102cfab"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/a17f8a17c20e8614c15b8e116e2f4bcde102cfab",
-                "reference": "a17f8a17c20e8614c15b8e116e2f4bcde102cfab",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.9"
-            },
-            "require-dev": {
-                "symfony/phpunit-bridge": "~2.7"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.7-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Component\\Filesystem\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony Filesystem Component",
-            "homepage": "https://symfony.com",
-            "time": "2015-09-09 17:42:36"
-        },
-        {
             "name": "symfony/finder",
             "version": "v2.7.5",
             "source": {
@@ -779,7 +672,6 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "typo3fluid/fluid": 20,
-        "filp/whoops": 20,
         "nikic/php-parser": 20,
         "famelo/archi": 20
     },
