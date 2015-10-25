@@ -1,20 +1,20 @@
 {
-    "name": "famelo/soup",
+    "name": "famelo\/soup",
     "description": "soup, just a small code generator test for now",
-	"autoload": {
-		"psr-4": {
-			"Famelo\\Soup\\": "src/"
-		}
-	},
+    "version": "0.0.1",
+    "autoload": {
+        "psr-4": {
+            "Famelo\\Soup\\": "src\/"
+        }
+    },
     "require": {
-        "typo3fluid/fluid": "*@dev",
-        "symfony/finder": "^2.7",
-        "symfony\/console": "~2.7",
+        "typo3fluid\/fluid": "*@dev",
         "symfony\/finder": "~2.7",
+        "symfony\/console": "~2.7",
         "symfony\/process": "~2.7",
         "kherge\/amend": "3.*",
-        "nikic/fast-route": "^0.6.0",
-        "nikic/php-parser": "dev-master",
-        "famelo/archi": "dev-master"
+        "nikic\/fast-route": "^0.6.0",
+        "nikic\/php-parser": "dev-master",
+        "famelo\/archi": "dev-master"
     }
 }
