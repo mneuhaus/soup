@@ -4,5 +4,11 @@
         "sha1": "303fe1f7b381c68e0e668983df6fead1db9bf920",
         "url": "https:\/\/github.com\/mneuhaus\/soup\/releases\/download\/0.0.1\/soup-0.0.1.phar",
         "version": "0.0.1"
+    },
+    {
+        "name": "soup.phar",
+        "sha1": "40d8410eda047a9df9b68f7b3080d718ddb069c1",
+        "url": "https:\/\/github.com\/mneuhaus\/soup\/releases\/download\/0.0.2\/soup-0.0.2.phar",
+        "version": "0.0.2"
     }
 ]
