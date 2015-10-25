@@ -2,7 +2,7 @@
 
 ## Download to local directory
 ```
-wget https://github.com/mneuhaus/soup/releases/download/0.0.1/soup.phar -O beard.phar
+wget https://github.com/mneuhaus/soup/releases/download/0.0.1/soup.phar -O soup.phar
 chmod +x soup.phar
 ```
 

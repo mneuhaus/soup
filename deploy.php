@@ -143,8 +143,8 @@ task('release:createPhar', function(){
 
 	$phar->buildFromIterator(new \ArrayIterator($files));
 	$phar->setStub(str_replace(
-		'__DIR__',
-		'\'phar://\' . __FILE__',
+		'require __DIR__ . \'/../vendor/autoload.php\';',
+		'Phar::mapPhar();require \'phar://\' . __FILE__ . \'/vendor/autoload.php\';',
 		file_get_contents('bin/soup')
 	));
 });
