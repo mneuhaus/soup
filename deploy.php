@@ -32,8 +32,33 @@ function getGithubCurl() {
 	curl_setopt($ch, CURLOPT_USERAGENT, 'Release Script for ' . get('username') . '/' . get('repository'));
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 	curl_setopt($ch, CURLOPT_USERPWD, get('username') . ':' . get('password'));
-	curl_setopt($ch, CURLOPT_URL, $uri);
 	return $ch;
+}
+
+function getUnixStylePath($path) {
+	if (strpos($path, ':') === FALSE) {
+		return str_replace(array('//', '\\'), '/', $path);
+	} else {
+		return preg_replace('/^([a-z]{2,}):\//', '$1://', str_replace(array('//', '\\'), '/', $path));
+	}
+}
+
+function readDirectoryRecursively($path, $suffix = NULL, $returnRealPath = TRUE, $returnDotFiles = FALSE, &$filenames = array()) {
+	$directoryIterator = new \DirectoryIterator($path);
+	$suffixLength = strlen($suffix);
+	foreach ($directoryIterator as $fileInfo) {
+		$filename = $fileInfo->getFilename();
+		if ($filename === '.' || $filename === '..' || ($returnDotFiles === FALSE && $filename[0] === '.')) {
+			continue;
+		}
+		if ($fileInfo->isFile() && ($suffix === NULL || substr($filename, -$suffixLength) === $suffix)) {
+			$filenames[] = getUnixStylePath(($returnRealPath === TRUE ? realpath($fileInfo->getPathname()) : $fileInfo->getPathname()));
+		}
+		if ($fileInfo->isDir()) {
+			readDirectoryRecursively($fileInfo->getPathname(), $suffix, $returnRealPath, $returnDotFiles, $filenames);
+		}
+	}
+	return $filenames;
 }
 
 task('release:askPasswort', function(){
@@ -90,26 +115,49 @@ task('release:removeCurrentTagFromRemote', function () {
 });
 
 task('release:createPhar', function(){
-	if (file_exists('Repository/soup-current.phar')) {
-		runLocally('rm Repository/soup-current.phar');
+	$pharFilename = 'Build/soup-' . get('version') . '.phar';
+	if (file_exists($pharFilename)) {
+		runLocally('rm ' . $pharFilename);
 	}
-	if (file_exists('Repository/soup-' . get('version') . '.phar')) {
-		runLocally('rm Repository/soup-' . get('version') . '.phar');
+
+	set('releaseFilename', $pharFilename);
+
+	$phar = new \Phar($pharFilename, 0);
+
+	$fileTypeIncludes = explode(',', 'php,html,css,js,eot,ttf,woff,woff2');
+	$excludePattern = '/(Tests\/.*|Cache\/.*|vendor\/.*\/vendor)/';
+	$files = [];
+	foreach (readDirectoryRecursively(__DIR__) as $file) {
+		$relativeFileName = str_replace(__DIR__, '', $file);
+
+		if (preg_match($excludePattern, $relativeFileName)) {
+			continue;
+		}
+
+		if (!in_array(pathinfo($file, PATHINFO_EXTENSION), $fileTypeIncludes)) {
+			continue;
+		}
+
+		$files[trim($relativeFileName, '/')] = $file;
 	}
-	runLocally('box build', 60 * 60);
-	runLocally('cp Repository/soup-current.phar Repository/soup-' . get('version') . '.phar');
+
+	$phar->buildFromIterator(new \ArrayIterator($files));
+	$phar->setStub(file_get_contents('bin/soup'));
 });
 
-task('release:updateReleasesManifest', function(){
-	$manifest = json_decode(file_get_contents('releases.json'), TRUE);
-	foreach ($manifest as $key => $release) {
-		if ($release['version'] == get('version')) {
-			unset($manifest[$key]);
+task('release:updateReleasesManifest', function() {
+	$manifest = array();
+	if (file_exists('releases.json')) {
+		$manifest = json_decode(file_get_contents('releases.json'), TRUE);
+		foreach ($manifest as $key => $release) {
+			if ($release['version'] == get('version')) {
+				unset($manifest[$key]);
+			}
 		}
 	}
 
-	$sha1 = sha1_file('Repository/soup-current.phar');
-	$file = 'soup-' . get('version') . '.phar';
+	$sha1 = sha1_file(get('releaseFilename'));
+	$file = basename(get('releaseFilename'));
 	$baseUrl = 'https://github.com/' . get('username') . '/' . get('repository') . '/releases/download/';
 	$manifest[] = array(
 		'name' => 'soup.phar',
@@ -159,13 +207,13 @@ task('release:destroyGithubRelease', function() {
 });
 
 task('release:addPharToRelease', function(){
-	$fileName = 'soup-' . get('version') . '.phar';
+	$fileName = basename(get('releaseFilename'));
 	$uri = 'https://uploads.github.com/repos/' . get('username') . '/' . get('repository') . '/releases/' . get('releaseId') . '/assets?name=' . $fileName;
 
 	$ch = getGithubCurl();
 	curl_setopt($ch, CURLOPT_URL, $uri);
 	curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: text/plain"));
-	curl_setopt($ch, CURLOPT_POSTFIELDS, file_get_contents('Repository/' . $fileName));
+	curl_setopt($ch, CURLOPT_POSTFIELDS, file_get_contents(get('releaseFilename')));
 	curl_setopt($ch, CURLOPT_POST, 1);
 
 	$result = curl_exec($ch);
@@ -225,7 +273,7 @@ task('release:replaceCurrent', [
     'release:addPharToRelease'
 ]);
 
-task('soup:build', [
+task('release:build', [
 	'release:fetchVersion',
     'release:createPhar',
 ]);
