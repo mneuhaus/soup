@@ -2,7 +2,7 @@
 namespace Famelo\Soup\Core;
 
 use Famelo\Archi\Php\ClassFacade;
-use Famelo\Soup\Utility\String;
+use Famelo\Archi\Utility\String;
 use Symfony\Component\Finder\Finder;
 
 /*

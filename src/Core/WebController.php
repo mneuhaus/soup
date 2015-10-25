@@ -2,7 +2,7 @@
 namespace Famelo\Soup\Core;
 
 use Famelo\Soup\Core\BookHandler;
-use Famelo\Soup\Utility\String;
+use Famelo\Archi\Utility\String;
 use TYPO3Fluid\Fluid\View\TemplateView;
 
 /*

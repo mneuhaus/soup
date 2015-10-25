@@ -5,8 +5,8 @@ use Famelo\Archi\ComposerFacade;
 use Famelo\Archi\Php\ClassFacade;
 use Famelo\Archi\Typo3\ControllerFacade;
 use Famelo\Soup\Core\Ingredients\AbstractIngredient;
-use Famelo\Soup\Utility\Path;
-use Famelo\Soup\Utility\String;
+use Famelo\Archi\Utility\Path;
+use Famelo\Archi\Utility\String;
 use Symfony\Component\Finder\Finder;
 
 /*

@@ -2,7 +2,7 @@
 namespace Famelo\Soup\TYPO3;
 
 use Famelo\Soup\Core\BookInterface;
-use Famelo\Soup\Utility\String;
+use Famelo\Archi\Utility\String;
 use Symfony\Component\Finder\Finder;
 
 /*

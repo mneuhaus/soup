@@ -1,7 +1,7 @@
 <?php
 namespace Famelo\Soup\ViewHelpers\String;
 
-use Famelo\Soup\Utility\String;
+use Famelo\Archi\Utility\String;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 /**

@@ -2,8 +2,8 @@
 namespace Famelo\Soup\TYPO3;
 
 use Famelo\Soup\Typo3\Ingredients\Metadata;
-use Famelo\Soup\Utility\Path;
-use Famelo\Soup\Utility\String;
+use Famelo\Archi\Utility\Path;
+use Famelo\Archi\Utility\String;
 use Symfony\Component\Finder\Finder;
 
 /*
@@ -36,11 +36,11 @@ class ExtensionRecipe {
 			'className' => '\Famelo\Soup\Typo3\Ingredients\Plugin',
 			'multiple' => TRUE
 		),
-		// array(
-		// 	'title' => 'Models',
-		// 	'className' => '\Famelo\Soup\Typo3\Ingredients\Model',
-		// 	'multiple' => TRUE
-		// )
+		array(
+			'title' => 'Models',
+			'className' => '\Famelo\Soup\Typo3\Ingredients\Model',
+			'multiple' => TRUE
+		)
 	);
 
 	public function __construct($path = NULL) {
