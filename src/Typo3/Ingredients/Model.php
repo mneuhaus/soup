@@ -3,6 +3,7 @@ namespace Famelo\Soup\Typo3\Ingredients;
 
 use Famelo\Archi\ComposerFacade;
 use Famelo\Archi\Php\ClassFacade;
+use Famelo\Archi\Typo3\ModelFacade;
 use Famelo\Soup\Core\Ingredients\AbstractIngredient;
 use Famelo\Soup\Utility\Path;
 use Famelo\Soup\Utility\String;
@@ -30,13 +31,9 @@ class Model extends AbstractIngredient {
 	protected $filepath;
 
 	public function __construct($filepath = NULL) {
-		if ($filepath === NULL || !file_exists($filepath)) {
-			$filepath = Path::joinPaths(BASE_DIRECTORY, '../Resources/CodeTemplates/Typo3/Model.php');
-		} else {
-			$this->filepath = $filepath;
-		}
-		$this->facade = new ClassFacade($filepath);
-		$this->name = $this->facade->getName();
+		$this->filepath = $filepath;
+		$this->facade = new ModelFacade($filepath);
+		$this->name = $this->facade->name;
 	}
 
 	public static function getInstances() {
@@ -69,15 +66,11 @@ class Model extends AbstractIngredient {
 	}
 
 	public function save($arguments) {
-		$className = ucfirst($arguments['name']);
-		$targetFileName = 'Classes/Domain/Model/' . $className . '.php';
-		if (!Path::isIdentical($targetFileName, $this->filepath) && file_exists($this->filepath)) {
-			unlink($this->filepath);
-		}
-		$this->saveNamespace();
-		$this->facade->setClassName($className);
+		$this->facade->name = $arguments['name'];
 
-		$existingProperties = $this->getProperties();
+		$composer = new ComposerFacade('composer.json');
+		$this->facade->namespace = $composer->getNamespace() . '\\Domain\\Model';
+
 		foreach ($arguments['properties'] as $property => $data) {
 			if (isset($data['_remove'])) {
 				$this->facade->removeProperty($property);
@@ -92,12 +85,6 @@ class Model extends AbstractIngredient {
 			}
 		}
 
-		$this->facade->save($targetFileName);
-	}
-
-	public function saveNamespace() {
-		$composer = new ComposerFacade('composer.json');
-		$namespace = $composer->getNamespace() . '\\Domain\\Model';
-		$this->facade->setNamespace($namespace);
+		$this->facade->save();
 	}
 }

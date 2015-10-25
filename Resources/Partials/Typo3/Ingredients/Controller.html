@@ -1,12 +1,12 @@
 <f:render partial="Card" arguments="{header: ingredient.name, type: 'Controller', color: 'cyan'}" contentAs="content">
-	<s:form.field name="{s:form.name(name: 'name')}" label="Controller Name" value="{ingredient.name}" class="form-control card-header-field" arguments="{cardSuffix: 'Controller'}" />
+	<s:form.field name="{s:form.name(name: 'name')}" label="Controller Name" value="{ingredient.name}" class="form-control card-header-field controller-name" arguments="{cardSuffix: 'Controller'}" />
 
 	<s:form.field label="Actions">
 		<div class="form-sub repeater">
 			<div class="repeater-items">
 				<f:for each="{ingredient.actions}" as="action">
 					<div class="repeater-item depth-2">
-						<s:form.field name="{s:form.name(name: 'actions.{action.name}.name')}" label="Name" value="{action.name->s:string.cutSuffix(suffix: 'action')}" />
+						<s:form.field name="{s:form.name(name: 'actions.{action.name}.name')}" label="Name" class="form-control controller-action" value="{action.name->s:string.cutSuffix(suffix: 'Action')}" />
 
 						<a href="#" class="btn-round btn-round-small repeater-item-remove">
 							<i class="material-icons">remove</i>

@@ -52,8 +52,28 @@ class Plugin extends AbstractIngredient {
 		return $this->facade->cachedControllers;
 	}
 
+	public function getCachedControllersValue() {
+		$value = array();
+		foreach ($this->facade->cachedControllers as $controller => $actions) {
+			foreach ($actions as $action) {
+				$value[] = String::cutSuffix($controller, 'Controller') . ':' . String::cutSuffix($action, 'Action');
+			}
+		}
+		return implode(',', $value);
+	}
+
 	public function getUncachedControllers() {
 		return $this->facade->uncachedControllers;
+	}
+
+	public function getUncachedControllersValue() {
+		$value = array();
+		foreach ($this->facade->uncachedControllers as $controller => $actions) {
+			foreach ($actions as $action) {
+				$value[] = String::cutSuffix($controller, 'Controller') . ':' . String::cutSuffix($action, 'Action');
+			}
+		}
+		return implode(',', $value);
 	}
 
 	public function getName() {
@@ -72,10 +92,17 @@ class Plugin extends AbstractIngredient {
 		$this->facade->name = $arguments['name'];
 		$this->facade->title = $arguments['title'];
 		$this->facade->title = $arguments['title'];
+
 		$this->facade->cachedControllers = array();
-		foreach ($arguments['cachedControllers'] as $cachedController) {
-			$this->facade->cachedControllers[$cachedController['name']] = $cachedController['actions'];
+		$this->facade->uncachedControllers = array();
+		foreach ($arguments['cachedActions'] as $cachedAction) {
+			$parts = explode(':', $cachedAction);
+			$this->facade->addAction($parts[0], $parts[1], in_array($cachedAction, $arguments['uncachedActions']));
 		}
+
+		$parts = explode(':', $arguments['defaultAction']);
+		$this->facade->setDefaultAction($parts[0], $parts[1]);
+
 		$this->facade->save();
 	}
 }

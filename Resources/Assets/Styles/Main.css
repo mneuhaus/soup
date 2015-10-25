@@ -345,3 +345,10 @@ a:hover {
   display: none;
 }
 /*# sourceMappingURL=Main.css.map */
+
+.ms-container {
+  width: 100%;
+}
+.ms-container .ms-list{
+  height: 130px;
+}

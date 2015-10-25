@@ -30,7 +30,7 @@ $.widget("custom.repeater", {
             e.preventDefault();
             var item = $(this).parents('.repeater-item').first();
             var referenceData = item.find('.repeater-reference-data');
-            referenceData.append('<input type="text" name="' + referenceData.attr('data-namespace') + '[_remove]' + '" value=1>');
+            referenceData.append('<input type="hidden" name="' + referenceData.attr('data-namespace') + '[_remove]' + '" value=1>');
             repeater.element.append(referenceData);
             item.find('.repeater-item-remove').remove();
             item.slideUp(function(){

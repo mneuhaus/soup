@@ -61,6 +61,9 @@ class String {
 	}
 
     public static function cutSuffix($string, $suffix) {
+        if (!static::endsWith($string, $suffix)) {
+            return $string;
+        }
         return substr($string, 0, strlen($suffix) * -1);
     }
 

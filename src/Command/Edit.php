@@ -38,9 +38,9 @@ class Edit extends Command {
 
 		// $this->addArgument('path', InputArgument::REQUIRED);
 
-		// $this->addOption('add-getter-setter', FALSE, InputOption::VALUE_NONE,
-		// 	'Adds missing getters and setters'
-		// );
+		$this->addOption('--throttle', FALSE, InputOption::VALUE_NONE,
+			'Force process throttling to make the integrated webserver to behave (needs cputhrottle installed)'
+		);
 	}
 
 	/**
@@ -73,9 +73,12 @@ if (file_exists($possibleFilePath) & !is_dir($possibleFilePath)) {
 
 		$output->writeln('server running on http://localhost:1716 (ctrl+c to quit)');
 
-		shell_exec('open http://localhost:1716');
-
-		while ($process->isRunning()) {}
+		while ($process->isRunning()) {
+			// this is just a keep-alive,
+			// if we don't sleep here the cpu process goes crazy without anything
+			// to do, since we have to wait, we can wait forever as well
+			sleep(PHP_INT_MAX);
+		}
     }
 }
 

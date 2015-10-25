@@ -2,29 +2,9 @@
 	<s:form.field name="{s:form.name(name: 'name')}" label="Name" value="{ingredient.name}" class="form-control" />
 	<s:form.field name="{s:form.name(name: 'title')}" label="Title" value="{ingredient.title}" class="form-control card-header-field" />
 
-	<s:form.field label="Controller">
-		<div class="form-sub repeater">
-			<div class="repeater-items">
-				<f:for each="{ingredient.cachedControllers}" key="controllerName" as="actions">
-					<div class="repeater-item depth-2">
-						<s:form.field name="{s:form.name(name: 'cachedControllers.{controllerName}')}"  value="{controllerName: controllerName, actions: actions}" control="PluginController" wrap="" />
+	<s:form.field name="{s:form.name(name: 'defaultAction')}" label="Default Action" value="{ingredient.facade.defaultController}:{ingredient.facade.defaultAction}" class="form-control" control="Typo3/DefaultControllerAction" />
 
-						<a href="#" class="btn-round btn-round-small repeater-item-remove">
-							<i class="material-icons">remove</i>
-						</a>
-					</div>
-				</f:for>
-			</div>
+	<s:form.field name="{s:form.name(name: 'cachedActions')}[]" label="Cached Actions" value="{ingredient.cachedControllersValue}" class="form-control card-header-field" control="ControllerActions" />
 
-			<div class="repeater-item repeater-template depth-2">
-				<s:form.field name="{s:form.name(name: 'cachedControllers.--id--')}" label="Name" value="{controllerName: controllerName, actions: actions}" control="PluginController"  wrap="" />
-
-				<a href="#" class="btn-round btn-round-small repeater-item-remove">
-					<i class="material-icons">remove</i>
-				</a>
-			</div>
-
-    		<p class="help-block"></p>
-		</div>
-	</s:form.field>
+	<s:form.field name="{s:form.name(name: 'uncachedActions')}[]" label="Uncached Actions" value="{ingredient.uncachedControllersValue}" class="form-control card-header-field" control="ControllerActions" />
 </f:render>
