@@ -1,12 +1,8 @@
 #!/usr/bin/env php
 <?php
 
-if (Phar::isValidPharFilename(__FILE__)) {
-	ini_set("phar.readonly", 1);
-    require 'phar://' . __FILE__ . "/vendor/autoload.php";
-} else {
-    require __DIR__ . '/../vendor/autoload.php';
-}
+ini_set("phar.readonly", 1);
+require __DIR__ . '/../vendor/autoload.php';
 
 $app = new Famelo\Soup\Application();
 $app->run();

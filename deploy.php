@@ -142,7 +142,11 @@ task('release:createPhar', function(){
 	}
 
 	$phar->buildFromIterator(new \ArrayIterator($files));
-	$phar->setStub(file_get_contents('bin/soup'));
+	$phar->setStub(str_replace(
+		'__DIR__',
+		'\'phar://\' . __FILE__',
+		file_get_contents('bin/soup')
+	));
 });
 
 task('release:updateReleasesManifest', function() {
