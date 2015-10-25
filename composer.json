@@ -1,7 +1,7 @@
 {
     "name": "famelo\/soup",
     "description": "soup, just a small code generator test for now",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "autoload": {
         "psr-4": {
             "Famelo\\Soup\\": "src\/"
