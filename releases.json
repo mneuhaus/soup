@@ -1,8 +1,8 @@
-[
-    "2": {
+[[
+    {
         "name": "soup.phar",
-        "sha1": "e0c1d038038ad47aaf045378eb4c253c9791113a",
+        "sha1": "7b6e0ed247be6d42bbd349fa660e12d53bd9480d",
         "url": "https:\/\/github.com\/mneuhaus\/soup\/releases\/download\/0.0.1\/soup-0.0.1.phar",
         "version": "0.0.1"
     }
-]
+]]
