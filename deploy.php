@@ -110,8 +110,12 @@ task('release:pushTags', function () {
 });
 
 task('release:removeCurrentTagFromRemote', function () {
-	runLocally('git tag -d "' . get('version') . '"');
-	runLocally('git push origin :refs/tags/' . get('version'));
+	try {
+		runLocally('git tag -d "' . get('version') . '"');
+		runLocally('git push origin :refs/tags/' . get('version'));
+	} catch(\Exception $e) {
+
+	}
 });
 
 task('release:createPhar', function(){
@@ -124,7 +128,7 @@ task('release:createPhar', function(){
 
 	$phar = new \Phar($pharFilename, 0);
 
-	$fileTypeIncludes = explode(',', 'php,html,css,js,eot,ttf,woff,woff2');
+	$fileTypeIncludes = explode(',', 'php,html,css,js,eot,ttf,woff,woff2,json');
 	$excludePattern = '/(Tests\/.*|Cache\/.*|vendor\/.*\/vendor)/';
 	$files = [];
 	foreach (readDirectoryRecursively(__DIR__) as $file) {
@@ -143,8 +147,14 @@ task('release:createPhar', function(){
 
 	$phar->buildFromIterator(new \ArrayIterator($files));
 	$phar->setStub(str_replace(
-		'require __DIR__ . \'/../vendor/autoload.php\';',
-		'Phar::mapPhar();require \'phar://\' . __FILE__ . \'/vendor/autoload.php\';',
+		array(
+			'require __DIR__ . \'/../vendor/autoload.php\';',
+			'$app = new Famelo\Soup\Application();'
+		),
+		array(
+			'Phar::mapPhar();require \'phar://\' . __FILE__ . \'/vendor/autoload.php\';',
+			'$app = new Famelo\Soup\Application("Soup", "' . get('version') . '");'
+		),
 		file_get_contents('bin/soup')
 	));
 });
@@ -170,7 +180,7 @@ task('release:updateReleasesManifest', function() {
 		'version' => get('version')
 	);
 
-	file_put_contents('releases.json', json_encode($manifest, JSON_PRETTY_PRINT));
+	file_put_contents('releases.json', json_encode(array_values($manifest), JSON_PRETTY_PRINT));
 
 	runLocally('git add releases.json');
 	runLocally('git commit -m "Added Version: ' . get('version') . '"');
@@ -201,6 +211,9 @@ task('release:destroyGithubRelease', function() {
 	curl_setopt($ch, CURLOPT_URL, $uri);
 
 	$release = json_decode(curl_exec($ch));
+	if (!isset($release->id)) {
+		return;
+	}
 	$releaseId = $release->id;
 
 	$uri = 'https://api.github.com/repos/' . get('username') . '/' . get('repository') . '/releases/' . $releaseId;

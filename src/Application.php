@@ -16,7 +16,7 @@ class Application extends Base {
 	/**
 	 * @override
 	 */
-	public function __construct($name = 'Soup', $version = '@git_tag@') {
+	public function __construct($name = 'Soup', $version = 'master') {
 		parent::__construct($name, $version);
 	}
 
@@ -27,14 +27,25 @@ class Application extends Base {
 		$commands = parent::getDefaultCommands();
 		$commands[] = new Command\Edit();
 
-		if (('@' . 'git_tag@') !== $this->getVersion()) {
+		if ('master' !== $this->getVersion()) {
 			$command = new Amend\Command('update');
-			$command->setManifestUri('@manifest_url@');
+			$command->setManifestUri('https://raw.github.com/mneuhaus/soup/master/releases.json');
 
 			$commands[] = $command;
 		}
 
 		return $commands;
+	}
+
+	/**
+	 * @override
+	 */
+	protected function getDefaultHelperSet() {
+		$helperSet = parent::getDefaultHelperSet();
+		if ('master' !== $this->getVersion()) {
+			$helperSet->set(new Amend\Helper());
+		}
+		return $helperSet;
 	}
 }
 
