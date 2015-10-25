@@ -96,7 +96,7 @@ task('release:createPhar', function(){
 	if (file_exists('Repository/soup-' . get('version') . '.phar')) {
 		runLocally('rm Repository/soup-' . get('version') . '.phar');
 	}
-	runLocally('box build');
+	runLocally('box build', 60 * 60);
 	runLocally('cp Repository/soup-current.phar Repository/soup-' . get('version') . '.phar');
 });
 
@@ -226,5 +226,6 @@ task('release:replaceCurrent', [
 ]);
 
 task('soup:build', [
+	'release:fetchVersion',
     'release:createPhar',
 ]);
