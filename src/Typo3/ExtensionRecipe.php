@@ -40,6 +40,10 @@ class ExtensionRecipe {
 			'title' => 'Models',
 			'className' => '\Famelo\Soup\Typo3\Ingredients\Model',
 			'multiple' => TRUE
+		),
+		array(
+			'title' => 'FluidTYPO3',
+			'className' => '\Famelo\Soup\Typo3\Ingredients\FluidTypo3'
 		)
 	);
 

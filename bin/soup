@@ -1,5 +1,6 @@
 #!/usr/bin/env php
 <?php
+define('BOX_PATH', dirname(__DIR__));
 
 ini_set("phar.readonly", 1);
 require __DIR__ . '/../vendor/autoload.php';

@@ -10667,6 +10667,143 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
+	"\/Components\/multiselect\/bower.json": {
+		"fileType": 524288,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/Components\/multiselect\/bower.json",
+		"orderOutput": 0,
+		"outputAbbreviatedPath": "\/Components\/multiselect\/bower-min.json",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1
+		},
+	"\/Components\/multiselect\/css\/multi-select.css": {
+		"fileType": 16,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/Components\/multiselect\/css\/multi-select.css",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/Components\/multiselect\/img\/switch.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 3080,
+		"inputAbbreviatedPath": "\/Components\/multiselect\/img\/switch.png",
+		"outputAbbreviatedPath": "\/Components\/multiselect\/img\/switch.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/Components\/multiselect\/js\/jquery.multi-select.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/Components\/multiselect\/js\/jquery.multi-select.js",
+		"outputAbbreviatedPath": "\/Components\/multiselect\/js\/min\/jquery.multi-select-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/Components\/multiselect\/multi-select.jquery.json": {
+		"fileType": 524288,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/Components\/multiselect\/multi-select.jquery.json",
+		"orderOutput": 0,
+		"outputAbbreviatedPath": "\/Components\/multiselect\/multi-select.jquery-min.json",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1
+		},
+	"\/Components\/multiselect\/test\/lib\/jasmine-1.2.0\/jasmine-html.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/Components\/multiselect\/test\/lib\/jasmine-1.2.0\/jasmine-html.js",
+		"outputAbbreviatedPath": "\/Components\/multiselect\/test\/lib\/jasmine-1.2.0\/min\/jasmine-html-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/Components\/multiselect\/test\/lib\/jasmine-1.2.0\/jasmine.css": {
+		"fileType": 16,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/Components\/multiselect\/test\/lib\/jasmine-1.2.0\/jasmine.css",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/Components\/multiselect\/test\/lib\/jasmine-1.2.0\/jasmine.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/Components\/multiselect\/test\/lib\/jasmine-1.2.0\/jasmine.js",
+		"outputAbbreviatedPath": "\/Components\/multiselect\/test\/lib\/jasmine-1.2.0\/min\/jasmine-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/Components\/multiselect\/test\/lib\/jasmine-jquery.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/Components\/multiselect\/test\/lib\/jasmine-jquery.js",
+		"outputAbbreviatedPath": "\/Components\/multiselect\/test\/lib\/min\/jasmine-jquery-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/Components\/multiselect\/test\/spec\/multiSelectSpec.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/Components\/multiselect\/test\/spec\/multiSelectSpec.js",
+		"outputAbbreviatedPath": "\/Components\/multiselect\/test\/spec\/min\/multiSelectSpec-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/Components\/multiselect\/test\/spec\/SpecHelper.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/Components\/multiselect\/test\/spec\/SpecHelper.js",
+		"outputAbbreviatedPath": "\/Components\/multiselect\/test\/spec\/min\/SpecHelper-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/Components\/multiselect\/test\/SpecRunner.html": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/Components\/multiselect\/test\/SpecRunner.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/Components\/multiselect\/test\/src\/jquery.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/Components\/multiselect\/test\/src\/jquery.js",
+		"outputAbbreviatedPath": "\/Components\/multiselect\/test\/src\/min\/jquery-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
 	"\/Components\/roboto-fontface\/bower.json": {
 		"fileType": 524288,
 		"ignore": 1,

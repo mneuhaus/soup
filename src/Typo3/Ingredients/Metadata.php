@@ -113,7 +113,7 @@ $EM_CONF[$_EXTKEY] = %s;',
 		if (!empty($fieldValues['company'])) {
 			$namespace = $fieldValues['company'] . '\\';
 		}
-		$namespace.= String::underscoreToCamelcase($fieldValues['extension_key']);
+		$namespace.= String::underscoreToCamelcase($fieldValues['extension_key']) . '\\';
 		$this->composer->setNamespace($namespace, 'Classes/');
 		$this->composer->save();
 	}

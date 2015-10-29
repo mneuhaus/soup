@@ -74,7 +74,7 @@ class Controller extends AbstractIngredient {
 		$this->facade->name = $arguments['name'];
 
 		$composer = new ComposerFacade('composer.json');
-		$this->facade->namespace = $composer->getNamespace() . '\\Controller';;
+		$this->facade->namespace = $composer->getNamespace() . 'Controller';;
 
 		foreach ($arguments['actions'] as $action => $data) {
 			if (isset($data['_remove'])) {
