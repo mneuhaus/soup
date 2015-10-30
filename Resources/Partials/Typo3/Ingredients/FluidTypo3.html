@@ -31,6 +31,9 @@
 			<div class="repeater-items">
 				<f:for each="{ingredient.fluidcontent}" as="content">
 					<div class="repeater-item depth-2">
+						<div class="repeater-reference-data" data-namespace="{s:form.name(name: 'fluidcontent.{content}')}">
+							<input type="hidden" name="{s:form.name(name: 'name')}" value="{content}" />
+						</div>
 						<s:form.field name="{s:form.name(name: 'fluidcontent.{content}.name')}" label="Name" class="form-control" value="{content}" />
 
 						<a href="#" class="btn-round btn-round-small repeater-item-remove">
@@ -55,6 +58,9 @@
 			<div class="repeater-items">
 				<f:for each="{ingredient.fluidbackend}" as="backend">
 					<div class="repeater-item depth-2">
+						<div class="repeater-reference-data" data-namespace="{s:form.name(name: 'fluidbackend.{backend}')}">
+							<input type="hidden" name="{s:form.name(name: 'name')}" value="{backend}" />
+						</div>
 						<s:form.field name="{s:form.name(name: 'fluidbackend.{backend}.name')}" label="Name" class="form-control" value="{backend}" />
 
 						<a href="#" class="btn-round btn-round-small repeater-item-remove">

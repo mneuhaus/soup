@@ -40,7 +40,7 @@ a:hover {
 }
 .card {
   background: white;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 .card-header,
 .card-body,
@@ -345,10 +345,3 @@ a:hover {
   display: none;
 }
 /*# sourceMappingURL=Main.css.map */
-
-.ms-container {
-  width: 100%;
-}
-.ms-container .ms-list{
-  height: 130px;
-}

@@ -102,7 +102,7 @@ class FluidTypo3 extends AbstractIngredient {
 
 	public static function getInstances() {
 		$fluidTypo3 = new FluidTypo3();
-		if (count($fluidTypo3->fluidpages) > 0 && count($fluidTypo3->fluidcontent) && count($fluidTypo3->fluidbackend) > 0) {
+		if (count($fluidTypo3->fluidpages) == 0 && count($fluidTypo3->fluidcontent) == 0 && count($fluidTypo3->fluidbackend) ==  0) {
 			return array();
 		}
 		return array($fluidTypo3);
@@ -152,7 +152,7 @@ class FluidTypo3 extends AbstractIngredient {
 		foreach ($templates as $templateName => $template) {
 			$oldTemplatePath = Path::joinPaths( 'Resources/Private/Templates', $providerName, $templateName . '.html');
 			if (isset($template['_remove'])) {
-				unlink($templatePath);
+				unlink($oldTemplatePath);
 				continue;
 			}
 

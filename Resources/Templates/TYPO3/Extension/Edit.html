@@ -13,14 +13,14 @@
 		</button>
 		<ul class="dropdown-menu depth-4">
 			<f:for each="{recipe.ingredients}" as="ingredientConfiguration">
-				<f:if condition="{ingredientConfiguration.multiple}">
-					<f:then>
+				<f:if condition="{ingredientConfiguration.mandatory}">
+					<f:else>
 						<li>
 							<a href="#repeater{ingredientConfiguration.className -> s:format.classId()}">
 								{ingredientConfiguration.title}
 							</a>
 						</li>
-					</f:then>
+					</f:else>
 				</f:if>
 			</f:for>
 		</ul>

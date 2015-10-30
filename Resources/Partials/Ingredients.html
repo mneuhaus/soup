@@ -28,7 +28,30 @@
 					</f:for>
 				</f:then>
 				<f:else>
-					<f:render partial="Ingredient" arguments="{ingredient: {id: '--template--'}, className: ingredientConfiguration.className}" />
+					<f:if condition="{ingredientConfiguration.mandatory}">
+						<f:then>
+							<f:render partial="Ingredient" arguments="{ingredient: {id: '--template--'}, className: ingredientConfiguration.className}" />
+						</f:then>
+						<f:else>
+							<div class="repeater" id="repeater{ingredientConfiguration.className -> s:format.classId()}" data-auto-add="0" data-placeholder="--template--" data-limit="1">
+								<div class="repeater-items">
+									<f:for each="{ingredientConfiguration.instances}" as="ingredient">
+										<div class="repeater-item">
+											<f:render partial="Ingredient" arguments="{ingredient: ingredient, className: ingredientConfiguration.className, ingredientConfiguration: ingredientConfiguration}" />
+										</div>
+									</f:for>
+								</div>
+
+								<div class="repeater-item repeater-template">
+									<f:render partial="Ingredient" arguments="{ingredient: {id: '--template--'}, className: ingredientConfiguration.className}" />
+								</div>
+
+								<a href="#" class="btn-round repeater-item-add hidden">
+									<i class="material-icons">add</i>
+								</a>
+							</div>
+						</f:else>
+					</f:if>
 				</f:else>
 			</f:if>
 		</f:else>
