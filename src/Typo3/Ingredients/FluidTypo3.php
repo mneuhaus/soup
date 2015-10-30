@@ -172,4 +172,37 @@ class FluidTypo3 extends AbstractIngredient {
 		}
 	}
 
+	public function remove() {
+		$extEmconfFacade = new ExtEmconfFacade();
+
+		$providers = array(
+			'Page' => 'fluidpages',
+			'Content' => 'fluidcontent',
+			'Backend' => 'fluidbackend'
+		);
+
+		foreach ($providers as $providerName => $providerExtension) {
+			if (isset($this->providers[$providerName])) {
+				$this->extTablesFacade->removeCode($this->providers[$providerName]['code']);
+			}
+			$extEmconfFacade->removeDependency($providerExtension);
+
+			$templatePath = Path::joinPaths( 'Resources/Private/Templates', $providerName);
+			if (!file_exists($templatePath)) {
+				continue;
+			}
+			$files = scandir($templatePath);
+			foreach ($files as $file) {
+				if (substr($file, 0, 1) == '.') {
+					continue;
+				}
+				unlink(Path::joinPaths($templatePath, $file));
+			}
+			rmdir($templatePath);
+		}
+
+		$this->extTablesFacade->save();
+		$extEmconfFacade->save();
+	}
+
 }
